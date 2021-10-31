@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# git提交文件时不提交的文件
+.idea
+*.iml
+target
