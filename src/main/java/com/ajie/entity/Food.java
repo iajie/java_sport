@@ -13,7 +13,7 @@ import lombok.Data;
  * @createTime 2021年06月14日 18:42:00
  */
 @Data
-public class Food1 {
+public class Food {
 
     @ApiModelProperty("主键")
     private Long id;

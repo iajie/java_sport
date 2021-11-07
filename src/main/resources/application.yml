@@ -10,7 +10,10 @@ spring:
   # 使用本地配置
   profiles:
     active: dev
-
+  # 设置文件上传最大大小，默认1M
+  servlet:
+    multipart:
+      max-file-size: 30MB
 
 # 配置mybatis
 mybatis:

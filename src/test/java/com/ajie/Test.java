@@ -51,16 +51,7 @@ public class Test {
     }*/
 
     public static void main(String[] args) throws FileNotFoundException {
-        /*long start = System.currentTimeMillis();
-        List<Food2> food2s = readExcel(new FileInputStream(new File("D:\\Java-code\\sport\\excel\\food.xlsx")), Food2.class);
-        long end = System.currentTimeMillis();
-        food2s.forEach(System.out::println);
-        System.err.println("读取：" + food2s.size() + "条");
-        System.err.println("读取耗时：" + (end-start) / 1000 + "s");*/
-
         ImportParams params = new ImportParams();
-        params.setTitleRows(1);
-        params.setHeadRows(1);
         long start2 = System.currentTimeMillis();
         List<Food1> list = ExcelImportUtil.importExcel(new File("D:\\Java-code\\sport\\excel\\food.xlsx"), Food1.class, params);
         list.forEach(System.out::println);
