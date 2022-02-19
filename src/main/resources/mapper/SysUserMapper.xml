@@ -47,7 +47,7 @@
 
     <!-- 获取用户信息 -->
     <select id="findByUsername" parameterType="java.lang.String" resultMap="mainMap">
-        select * from sys_user where (user_name = #{value} or phone_number = #{value})
+        select * from sys_user where (user_name = #{value} or phone_number = #{value} or open_id=#{value})
     </select>
 
     <!-- 根据用户ID查询角色信息 -->
@@ -136,6 +136,29 @@
             </if>
         </set>
         where id = #{id}
+    </update>
+
+    <!-- 修改用户信息 -->
+    <update id="updateByopenId" parameterType="com.ajie.entity.SysUser">
+        update sys_user
+        <set>
+            <if test="nickName != null">
+                nick_name = #{nickName},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber},
+            </if>
+        </set>
+        where open_id=#{openId}
     </update>
 
     <!-- 根据用户ID删除用户信息 -->

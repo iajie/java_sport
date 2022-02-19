@@ -6,6 +6,7 @@ import com.ajie.entity.SysRole;
 import com.ajie.entity.SysUser;
 import com.ajie.utils.QueryInfo;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
@@ -69,6 +70,13 @@ public interface SysUserMapper {
     void insert(SysUser user);
 
     /**
+     * 微信小程序进入添加信息
+     * @param openid 微信小程序唯一标识
+     */
+    @Insert("insert into sys_user(open_id) values (#{openid})")
+    void insertOpenid(@Param("openid") String openid);
+
+    /**
      * 修改用户信息
      * @param user 用户信息
      */
@@ -107,4 +115,10 @@ public interface SysUserMapper {
      */
     @Update("update sys_user set `password` = #{password} where email = #{email}")
     void updatePwdByMail(@Param("email") String email, @Param("password") String password);
+
+    /**
+     * 根据openid更新用户信息
+     * @param user
+     */
+    void updateByopenId(SysUser user);
 }

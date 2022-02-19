@@ -1,0 +1,43 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/food/food",
+		"pages/sport/sport",
+		"pages/user/user"
+	],
+	"usingComponents": {
+		"van-icon": "/miniprogram_npm/vant-weapp/icon/index"
+	},
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "Weixin",
+		"navigationBarTextStyle": "black"
+	},
+	"tabBar": {
+		"custom": true,
+		"color": "#000000",
+		"selectedColor": "#000000",
+		"backgroundColor": "#000000",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "运动资讯"
+			},
+			{
+				"pagePath": "pages/food/food",
+				"text": "饮食推荐"
+			},
+			{
+				"pagePath": "pages/sport/sport",
+				"text": "运动统计"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "个人中心"
+			}
+		]
+	},
+	"style": "v2",
+	"sitemapLocation": "sitemap.json"
+}

@@ -20,6 +20,13 @@ public interface SysUserService {
     Result login(LoginVo loginVo);
 
     /**
+     * 登录接口
+     * @param openid 登录参数： 账号和密码
+     * @return 返回token，用token去获取资源
+     */
+    Result miniLogin(String openid);
+
+    /**
      * 根据用户名获取用户信息
      * @param username
      * @return
@@ -60,4 +67,11 @@ public interface SysUserService {
      * @param password
      */
     void updatePwdByMail(String email, String password);
+
+    /**
+     * 根据openid更新用户信息
+     * @param user
+     * @return
+     */
+    Result updateByopenId(SysUser user);
 }

@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container">
+	<view class="userinfo">
+		<van-button type="danger" bindtap="getInfo">获取信息</van-button>
+	</view>
+</view>

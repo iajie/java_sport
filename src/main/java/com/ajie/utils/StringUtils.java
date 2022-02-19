@@ -14,4 +14,13 @@ public class StringUtils {
     public static boolean isNotEmpty(String str) {
         return str != null && !"".equals(str);
     }
+
+    /**
+     * 字符串判断
+     * @param str
+     * @return
+     */
+    public static boolean isEmpty(String str) {
+        return str == null || "".equals(str);
+    }
 }

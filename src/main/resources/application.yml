@@ -60,3 +60,9 @@ aliyun:
   signName: 阿杰通讯
   # 短信模板
   templateCode: SMS_208965510
+
+# 微信小程序
+mini:
+  # 密钥
+  appid: wx1d12ba7c19ea6f4f
+  secret: b05d1917bcad52ec138b2140330c2221

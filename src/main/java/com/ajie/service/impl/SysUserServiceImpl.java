@@ -96,6 +96,36 @@ public class SysUserServiceImpl implements SysUserService {
         return Result.success("登录成功！", map);
     }
 
+    /**
+     * 微信小程序登录
+     * @param openid 登录参数： 账号和密码
+     * @return
+     */
+    @Override
+    public Result miniLogin(String openid) {
+        UserDetails userDetails;
+        userDetails = userDetailsService.loadUserByUsername(openid);
+        if (userDetails == null) {
+            userMapper.insertOpenid(openid);
+            userDetails = userDetailsService.loadUserByUsername(openid);
+        }
+        if (!userDetails.isEnabled()) {
+            return Result.fail("该账号未启用，请联系管理员！");
+        }
+        log.info("微信小程序登录成功，在security对象中存入登陆者信息");
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        log.info("根据登录信息获取token");
+        //需要借助jwt来生成token
+        String token = tokenUtils.generateToken(userDetails);
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("tokenHead", tokenHead);
+        map.put("token", token);
+        map.put("userInfo", userDetails);
+        map.put("openid", openid);
+        return Result.success("登录成功！", map);
+    }
+
     @Override
     public SysUser findByUsername(String username) {
         return userMapper.findByUsername(username);
@@ -167,5 +197,14 @@ public class SysUserServiceImpl implements SysUserService {
     public void updatePwdByMail(String email, String password) {
         log.info("邮箱修改密码");
         userMapper.updatePwdByMail(email, password);
+    }
+
+    @Override
+    public Result updateByopenId(SysUser user) {
+        if (StringUtils.isEmpty(user.getOpenId())) {
+            return Result.fail("请传递小程序唯一标识");
+        }
+        userMapper.updateByopenId(user);
+        return Result.success("用户信息更新成功");
     }
 }
