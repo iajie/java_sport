@@ -29,9 +29,9 @@ spring:
     # 允许测试连接
     test-connection: true
     # 设置发件人
-    username: 1737194722@qq.com
-    # 授权码  WXAMDNQSECKZDDAJ
-    password: bxazkjooluvjebif
+    username:
+    # 授权码
+    password:
     # 服务端口
     port: 465
     properties:

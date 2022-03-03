@@ -45,24 +45,24 @@ jwt:
 
 # 配置七牛云
 qiniu:
-  accessKey: KQB7m45iUcKAzZT4Z1mPfT6Fi5ErcPbZFPSDWPal
-  secretKey: 0mm2CJs3h-i6ZvNZEpxx9ZBewYrNvHIzw5X5k514
-  bucket: ajie-sport
+  accessKey:
+  secretKey:
+  bucket:
 
 
 # 配置阿里云短信服务
 aliyun:
   # ak
-  accessKey: LTAI4Fy3GWhBHPxmVKmYuBp4
+  accessKey:
   # sk
-  secretKey: IFzcmKjZCaNhe8xbljYvQy7WQFo8uY
+  secretKey:
   # 签名
-  signName: 阿杰通讯
+  signName:
   # 短信模板
-  templateCode: SMS_208965510
+  templateCode:
 
 # 微信小程序
 mini:
   # 密钥
-  appid: wx1d12ba7c19ea6f4f
-  secret: b05d1917bcad52ec138b2140330c2221
+  appid:
+  secret:
