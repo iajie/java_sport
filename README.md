@@ -3,6 +3,7 @@
 ### 介绍
 **个人运动管理平台**
 使用微信小程序获取微信运动接口数据进行的统计平台，食物模块更详细的展示食物营养成分，帮助提高个人对健康的认识。
+bilibili地址[bilibili地址](https://www.bilibili.com/video/BV1Mq4y1W747?p=4)
 
 ### 项目架构
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0303/233742_bb06844c_8886246.png "屏幕截图.png")
