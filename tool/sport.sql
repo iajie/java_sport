@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 19/02/2022 23:02:51
+ Date: 03/03/2022 23:42:24
 */
 
 SET NAMES utf8mb4;
@@ -212,17 +212,17 @@ CREATE TABLE `food_type`  (
 -- Records of food_type
 -- ----------------------------
 INSERT INTO `food_type` VALUES (1, '主食类', 'shiwu');
-INSERT INTO `food_type` VALUES (2, '肉蛋类', 'roufu');
-INSERT INTO `food_type` VALUES (3, '大豆及制品', 'kaoyudoufu');
-INSERT INTO `food_type` VALUES (4, '蔬菜菌藻类', 'tubiaozhizuomoban');
-INSERT INTO `food_type` VALUES (5, '水果类', 'shuiguo');
-INSERT INTO `food_type` VALUES (6, '奶类', 'naizhipin');
-INSERT INTO `food_type` VALUES (7, '油脂类', 'youtiao');
+INSERT INTO `food_type` VALUES (2, '肉蛋类', 'shengxian-roulei');
+INSERT INTO `food_type` VALUES (3, '大豆及制品', 'doulei');
+INSERT INTO `food_type` VALUES (4, '蔬菜菌藻类', 'shucaiqu');
+INSERT INTO `food_type` VALUES (5, '水果类', 'icon-test');
+INSERT INTO `food_type` VALUES (6, '奶类', 'niunainaiping');
+INSERT INTO `food_type` VALUES (7, '油脂类', 'youzhi');
 INSERT INTO `food_type` VALUES (8, '坚果类', 'jianguo');
-INSERT INTO `food_type` VALUES (9, '调味品', 'tiaoweiliao');
+INSERT INTO `food_type` VALUES (9, '调味品', 'chufangyongpin-tiaoweiping');
 INSERT INTO `food_type` VALUES (10, '饮料类', 'yinliao');
 INSERT INTO `food_type` VALUES (11, '零食点心冷饮', 'icon-test');
-INSERT INTO `food_type` VALUES (12, '其他', 'icon-test1');
+INSERT INTO `food_type` VALUES (12, '其他', 'qita');
 
 -- ----------------------------
 -- Table structure for roles_menus
@@ -231,7 +231,7 @@ DROP TABLE IF EXISTS `roles_menus`;
 CREATE TABLE `roles_menus`  (
   `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色ID',
   `menu_id` bigint(20) NULL DEFAULT NULL COMMENT '菜单权限ID'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of roles_menus
@@ -263,7 +263,7 @@ DROP TABLE IF EXISTS `roles_permissions`;
 CREATE TABLE `roles_permissions`  (
   `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色ID',
   `permission_id` bigint(20) NULL DEFAULT NULL COMMENT '数据权限ID'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of roles_permissions
@@ -331,7 +331,7 @@ CREATE TABLE `sport`  (
   `update_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `del` tinyint(1) NULL DEFAULT 0 COMMENT '删除标记',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '运动咨询' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '运动咨询' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sport
@@ -339,6 +339,9 @@ CREATE TABLE `sport`  (
 INSERT INTO `sport` VALUES (1, '源于本', '<p><img src=\"http://vue.jierxm.com/20211209233423a9eb9b5773eb023580ca269efd81e5fa.jpeg\" alt=\"a9eb9b5773eb023580ca269efd81e5fa.jpeg\"></p>\n\n![7239e414a691cbdd53dc75030854c7d1.jpeg](http://vue.jierxm.com/202112092336267239e414a691cbdd53dc75030854c7d1.jpeg)![01bb58da69cf692038f4cdfd0889b406.jpeg](http://vue.jierxm.com/2021120923364501bb58da69cf692038f4cdfd0889b406.jpeg)![46d4a5d128c357e7018bd0d54fd78196.jpeg](http://vue.jierxm.com/2021120923384546d4a5d128c357e7018bd0d54fd78196.jpeg)', '2021-12-09 21:57:48', 'admin', '2021-12-09 23:39:02', 'admin', 0);
 INSERT INTO `sport` VALUES (2, '源于“本质研究”的“未来生活”——花王以日式细腻美学融合尖端', '在连续几届的中国国际进口博览会（以下简称“进博会”）上，花王展台汇集尖端科技的新品首展都给观众留下了深刻的印象。今年花王依然不负众望，在展区的“未来生活”版块，集团最高端化妆品品牌“SENSAI丝光溢彩”将完成进博会的首秀。除此之外，凝聚集团最尖端科技的“Fine Fiber Technology”（超细纤维技术）的系列产品将再次带来新的惊喜。观众可在现场通过沉浸式的定制体验，领略在美妆领域花王基于“本质研究”创造“未来生活”的美丽智慧。\n![](http://img.danews.cc/upload/doc/20211103/618243ef7f557.png)\n“SENSAI丝光溢彩”以“THE SENSE AND SCIENCE OF JAPAN”为理念，融合日式细腻美学与尖端技术，打造水润、紧致而又光彩照人的丝柔美肌。品牌1983年诞生于欧洲，多年来“SENSAI丝光溢彩”以其独特配方受到40多个国家众多爱用者的青睐，品牌最具代表性的特色是其采用了源自日本的国宝级蚕丝——“小石丸蚕丝”中提取的精华。“小石丸蚕丝”这种高品质的名贵蚕丝质地非常纤细，轻盈却不失强韧感，拥有迷人的细腻美丽光泽。“SENSAI丝光溢彩”历经孜孜不倦的潜心研究，在不断的改良、融合、拓展中，最终开发了小石丸蚕丝EX*和小石丸蚕丝Royal™*等复合成分，让肌肤绽放如蚕丝般的丝柔光彩。此外，“SENSAI丝光溢彩”提倡日式内韧美学理念，采用日本独有的“Saho”护肤手法，实现“双重清洁、双重保湿”，在雅致的“美之仪式”中体验由内而外的细腻改变。\n\n　　*小石丸水解蚕丝等的复合成分\n![](http://img.danews.cc/upload/doc/20211103/618243ef9f890.png)\n### “Fine Fiber Technology”（超细纤维技术）再度重磅亮相，为中国消费者提供护肤新价值\n***往届进博会中备受瞩目的花王尖端技术——“Fine Fiber Technology”（超细纤维技术）打造全新护肤体验将再次亮相进博会，为中国消费者带来了基于此技术开创的更贴近现今日常生活习惯的护肤新价值。***', '2021-12-09 22:05:43', 'admin', NULL, NULL, 0);
 INSERT INTO `sport` VALUES (3, 'vue引入markdown', '<h2 id=\"1、引入markdown\">1、引入markdown</h2>\n<pre><code class=\"language-js\">npm install mavon-editor --save\n</code></pre>\n<h2 id=\"2、在utils下创建markdownjs\">2、在utils下创建markdown.js</h2>\n<pre><code class=\"language-js\">// 引入markdown\nimport MarkDown from &quot;mavon-editor&quot;;\nimport Vue from &quot;vue&quot;;\nimport &#39;mavon-editor/dist/css/index.css&#39;;\n\nVue.use(MarkDown);\n</code></pre>\n<h2 id=\"3、在mainjs中引入markdownjs文件\">3、在main.js中引入markdown.js文件</h2>\n<pre><code class=\"language-js\">// 引入markdown\nimport &#39;@/utils/markdown&#39;;\n</code></pre>\n<h4 id=\"4、使用\">4、使用</h4>\n<pre><code class=\"language-html\">&lt;mavon-editor ref=&quot;md&quot; v-model=&quot;form.content&quot; :toolbars=&quot;toolbars&quot; @imgAdd=&quot;uploadImage&quot;/&gt;\n</code></pre>\n<pre><code class=\"language-js\">toolbars: {\n      bold: true, // 粗体\n      italic: true, // 斜体\n      header: true, // 标题\n      underline: true, // 下划线\n      quote: true, // 引用\n      ol: true, // 有序列表\n     ul: true, // 链接\n     imagelink: true, // 图片链接\n      code: true, // code\n      subfield: true, // 是否需要分栏\n     fullscreen: true, // 全屏编辑\n     /* 1.3.5 */\n     undo: true, // 上一步\n     trash: true, // 清空\n    /* 1.4.2 */\n    navigation: true // 导航目录\n};\n\nuploadImage(pos, $e) {\n    let formData = new FormData();\n    formData.append(&#39;file&#39;, $e);\n    this.$ajax.post(&#39;/tool/upload&#39;, formData).then((res) =&gt; {\n        this.$refs.md.$img2Url(pos, this.$qiniu + res.data.data);\n    });\n},\n</code></pre>\n<h5 id=\"5、内容回显\">5、内容回显</h5>\n<pre><code class=\"language-js\">cnpm install marked @^2.0.3 --s\n//在vue组件中引入\nimport marked from &#39;marked&#39;;\nthis.tableList = res.data.rows.filter(item =&gt; {\n    if (item.content &amp;&amp; item.content !== &#39;&#39;) {\n         item.content = marked(item.content);\n         item.remark = item.content;\n    }\n    return true;\n});\n\n// 内容会变成html格式\n&lt;template slot-scope=&quot;scope&quot;&gt;\n      &lt;div v-html=&quot;scope.row.content&quot;/&gt;\n&lt;/template&gt;\n</code></pre>\n## 6、代码高亮\n```js\ncnpm install highlight.js --save\n// 在utils下添加highlight.js\nimport Vue from \'vue\';\nimport hljs from \'highlight.js\';\n// 主题\nimport \'highlight.js/styles/atom-one-dark.css\';\n// 高亮指令\nVue.directive(\'hlzl\', (el) => {\n    let selectorAll = el.querySelectorAll(\'pre code\');\n    selectorAll.forEach((item) => {\n        hljs.highlightBlock(item);\n    });\n});\n// main.js中引入\n// 引入高亮\nimport \'@/utils/highlight\';\n\n/** html使用 */\n<div v-html=\"scope.row.content\" v-hlzl/>\n```', '2021-12-09 23:51:04', 'admin', '2021-12-10 00:24:45', 'admin', 0);
+INSERT INTO `sport` VALUES (4, 'vue引入markdown', '<h2 id=\"1、引入markdown\">1、引入markdown</h2>\n<pre><code class=\"language-js\">npm install mavon-editor --save\n</code></pre>\n<h2 id=\"2、在utils下创建markdownjs\">2、在utils下创建markdown.js</h2>\n<pre><code class=\"language-js\">// 引入markdown\nimport MarkDown from &quot;mavon-editor&quot;;\nimport Vue from &quot;vue&quot;;\nimport &#39;mavon-editor/dist/css/index.css&#39;;\n\nVue.use(MarkDown);\n</code></pre>\n<h2 id=\"3、在mainjs中引入markdownjs文件\">3、在main.js中引入markdown.js文件</h2>\n<pre><code class=\"language-js\">// 引入markdown\nimport &#39;@/utils/markdown&#39;;\n</code></pre>\n<h4 id=\"4、使用\">4、使用</h4>\n<pre><code class=\"language-html\">&lt;mavon-editor ref=&quot;md&quot; v-model=&quot;form.content&quot; :toolbars=&quot;toolbars&quot; @imgAdd=&quot;uploadImage&quot;/&gt;\n</code></pre>\n<pre><code class=\"language-js\">toolbars: {\n      bold: true, // 粗体\n      italic: true, // 斜体\n      header: true, // 标题\n      underline: true, // 下划线\n      quote: true, // 引用\n      ol: true, // 有序列表\n     ul: true, // 链接\n     imagelink: true, // 图片链接\n      code: true, // code\n      subfield: true, // 是否需要分栏\n     fullscreen: true, // 全屏编辑\n     /* 1.3.5 */\n     undo: true, // 上一步\n     trash: true, // 清空\n    /* 1.4.2 */\n    navigation: true // 导航目录\n};\n\nuploadImage(pos, $e) {\n    let formData = new FormData();\n    formData.append(&#39;file&#39;, $e);\n    this.$ajax.post(&#39;/tool/upload&#39;, formData).then((res) =&gt; {\n        this.$refs.md.$img2Url(pos, this.$qiniu + res.data.data);\n    });\n},\n</code></pre>\n<h5 id=\"5、内容回显\">5、内容回显</h5>\n<pre><code class=\"language-js\">cnpm install marked @^2.0.3 --s\n//在vue组件中引入\nimport marked from &#39;marked&#39;;\nthis.tableList = res.data.rows.filter(item =&gt; {\n    if (item.content &amp;&amp; item.content !== &#39;&#39;) {\n         item.content = marked(item.content);\n         item.remark = item.content;\n    }\n    return true;\n});\n\n// 内容会变成html格式\n&lt;template slot-scope=&quot;scope&quot;&gt;\n      &lt;div v-html=&quot;scope.row.content&quot;/&gt;\n&lt;/template&gt;\n</code></pre>\n## 6、代码高亮\n```js\ncnpm install highlight.js --save\n// 在utils下添加highlight.js\nimport Vue from \'vue\';\nimport hljs from \'highlight.js\';\n// 主题\nimport \'highlight.js/styles/atom-one-dark.css\';\n// 高亮指令\nVue.directive(\'hlzl\', (el) => {\n    let selectorAll = el.querySelectorAll(\'pre code\');\n    selectorAll.forEach((item) => {\n        hljs.highlightBlock(item);\n    });\n});\n// main.js中引入\n// 引入高亮\nimport \'@/utils/highlight\';\n\n/** html使用 */\n<div v-html=\"scope.row.content\" v-hlzl/>\n```', '2021-12-09 23:51:04', 'admin', '2021-12-10 00:24:45', 'admin', 0);
+INSERT INTO `sport` VALUES (5, 'vue引入markdown', '<h2 id=\"1、引入markdown\">1、引入markdown</h2>\n<pre><code class=\"language-js\">npm install mavon-editor --save\n</code></pre>\n<h2 id=\"2、在utils下创建markdownjs\">2、在utils下创建markdown.js</h2>\n<pre><code class=\"language-js\">// 引入markdown\nimport MarkDown from &quot;mavon-editor&quot;;\nimport Vue from &quot;vue&quot;;\nimport &#39;mavon-editor/dist/css/index.css&#39;;\n\nVue.use(MarkDown);\n</code></pre>\n<h2 id=\"3、在mainjs中引入markdownjs文件\">3、在main.js中引入markdown.js文件</h2>\n<pre><code class=\"language-js\">// 引入markdown\nimport &#39;@/utils/markdown&#39;;\n</code></pre>\n<h4 id=\"4、使用\">4、使用</h4>\n<pre><code class=\"language-html\">&lt;mavon-editor ref=&quot;md&quot; v-model=&quot;form.content&quot; :toolbars=&quot;toolbars&quot; @imgAdd=&quot;uploadImage&quot;/&gt;\n</code></pre>\n<pre><code class=\"language-js\">toolbars: {\n      bold: true, // 粗体\n      italic: true, // 斜体\n      header: true, // 标题\n      underline: true, // 下划线\n      quote: true, // 引用\n      ol: true, // 有序列表\n     ul: true, // 链接\n     imagelink: true, // 图片链接\n      code: true, // code\n      subfield: true, // 是否需要分栏\n     fullscreen: true, // 全屏编辑\n     /* 1.3.5 */\n     undo: true, // 上一步\n     trash: true, // 清空\n    /* 1.4.2 */\n    navigation: true // 导航目录\n};\n\nuploadImage(pos, $e) {\n    let formData = new FormData();\n    formData.append(&#39;file&#39;, $e);\n    this.$ajax.post(&#39;/tool/upload&#39;, formData).then((res) =&gt; {\n        this.$refs.md.$img2Url(pos, this.$qiniu + res.data.data);\n    });\n},\n</code></pre>\n<h5 id=\"5、内容回显\">5、内容回显</h5>\n<pre><code class=\"language-js\">cnpm install marked @^2.0.3 --s\n//在vue组件中引入\nimport marked from &#39;marked&#39;;\nthis.tableList = res.data.rows.filter(item =&gt; {\n    if (item.content &amp;&amp; item.content !== &#39;&#39;) {\n         item.content = marked(item.content);\n         item.remark = item.content;\n    }\n    return true;\n});\n\n// 内容会变成html格式\n&lt;template slot-scope=&quot;scope&quot;&gt;\n      &lt;div v-html=&quot;scope.row.content&quot;/&gt;\n&lt;/template&gt;\n</code></pre>\n## 6、代码高亮\n```js\ncnpm install highlight.js --save\n// 在utils下添加highlight.js\nimport Vue from \'vue\';\nimport hljs from \'highlight.js\';\n// 主题\nimport \'highlight.js/styles/atom-one-dark.css\';\n// 高亮指令\nVue.directive(\'hlzl\', (el) => {\n    let selectorAll = el.querySelectorAll(\'pre code\');\n    selectorAll.forEach((item) => {\n        hljs.highlightBlock(item);\n    });\n});\n// main.js中引入\n// 引入高亮\nimport \'@/utils/highlight\';\n\n/** html使用 */\n<div v-html=\"scope.row.content\" v-hlzl/>\n```', '2021-12-09 23:51:04', 'admin', '2021-12-10 00:24:45', 'admin', 0);
+INSERT INTO `sport` VALUES (6, 'vue引入markdown', '<h2 id=\"1、引入markdown\">1、引入markdown</h2>\n<pre><code class=\"language-js\">npm install mavon-editor --save\n</code></pre>\n<h2 id=\"2、在utils下创建markdownjs\">2、在utils下创建markdown.js</h2>\n<pre><code class=\"language-js\">// 引入markdown\nimport MarkDown from &quot;mavon-editor&quot;;\nimport Vue from &quot;vue&quot;;\nimport &#39;mavon-editor/dist/css/index.css&#39;;\n\nVue.use(MarkDown);\n</code></pre>\n<h2 id=\"3、在mainjs中引入markdownjs文件\">3、在main.js中引入markdown.js文件</h2>\n<pre><code class=\"language-js\">// 引入markdown\nimport &#39;@/utils/markdown&#39;;\n</code></pre>\n<h4 id=\"4、使用\">4、使用</h4>\n<pre><code class=\"language-html\">&lt;mavon-editor ref=&quot;md&quot; v-model=&quot;form.content&quot; :toolbars=&quot;toolbars&quot; @imgAdd=&quot;uploadImage&quot;/&gt;\n</code></pre>\n<pre><code class=\"language-js\">toolbars: {\n      bold: true, // 粗体\n      italic: true, // 斜体\n      header: true, // 标题\n      underline: true, // 下划线\n      quote: true, // 引用\n      ol: true, // 有序列表\n     ul: true, // 链接\n     imagelink: true, // 图片链接\n      code: true, // code\n      subfield: true, // 是否需要分栏\n     fullscreen: true, // 全屏编辑\n     /* 1.3.5 */\n     undo: true, // 上一步\n     trash: true, // 清空\n    /* 1.4.2 */\n    navigation: true // 导航目录\n};\n\nuploadImage(pos, $e) {\n    let formData = new FormData();\n    formData.append(&#39;file&#39;, $e);\n    this.$ajax.post(&#39;/tool/upload&#39;, formData).then((res) =&gt; {\n        this.$refs.md.$img2Url(pos, this.$qiniu + res.data.data);\n    });\n},\n</code></pre>\n<h5 id=\"5、内容回显\">5、内容回显</h5>\n<pre><code class=\"language-js\">cnpm install marked @^2.0.3 --s\n//在vue组件中引入\nimport marked from &#39;marked&#39;;\nthis.tableList = res.data.rows.filter(item =&gt; {\n    if (item.content &amp;&amp; item.content !== &#39;&#39;) {\n         item.content = marked(item.content);\n         item.remark = item.content;\n    }\n    return true;\n});\n\n// 内容会变成html格式\n&lt;template slot-scope=&quot;scope&quot;&gt;\n      &lt;div v-html=&quot;scope.row.content&quot;/&gt;\n&lt;/template&gt;\n</code></pre>\n## 6、代码高亮\n```js\ncnpm install highlight.js --save\n// 在utils下添加highlight.js\nimport Vue from \'vue\';\nimport hljs from \'highlight.js\';\n// 主题\nimport \'highlight.js/styles/atom-one-dark.css\';\n// 高亮指令\nVue.directive(\'hlzl\', (el) => {\n    let selectorAll = el.querySelectorAll(\'pre code\');\n    selectorAll.forEach((item) => {\n        hljs.highlightBlock(item);\n    });\n});\n// main.js中引入\n// 引入高亮\nimport \'@/utils/highlight\';\n\n/** html使用 */\n<div v-html=\"scope.row.content\" v-hlzl/>\n```', '2021-12-09 23:51:04', 'admin', '2021-12-10 00:24:45', 'admin', 0);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -353,7 +356,7 @@ CREATE TABLE `sys_menu`  (
   `parent_id` bigint(20) NULL DEFAULT NULL COMMENT '父级菜单',
   `status` tinyint(1) NULL DEFAULT 0 COMMENT '显示状态(0不显示、1显示)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -379,7 +382,7 @@ CREATE TABLE `sys_permission`  (
   `code` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据权限标签值',
   `status` tinyint(1) NULL DEFAULT 0 COMMENT '显示状态(0不显示、1显示)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_permission
@@ -412,7 +415,7 @@ CREATE TABLE `sys_role`  (
   `code` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色对应的标签值',
   `status` tinyint(1) NULL DEFAULT 0 COMMENT '显示状态(0不显示、1显示)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
@@ -442,7 +445,7 @@ CREATE TABLE `sys_user`  (
   `phone_number` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话号码',
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户邮箱',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
@@ -457,7 +460,7 @@ DROP TABLE IF EXISTS `user_roles`;
 CREATE TABLE `user_roles`  (
   `user_id` bigint(20) NULL DEFAULT NULL COMMENT '用户ID',
   `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色ID'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_roles
@@ -465,5 +468,15 @@ CREATE TABLE `user_roles`  (
 INSERT INTO `user_roles` VALUES (2, 3);
 INSERT INTO `user_roles` VALUES (3, 5);
 INSERT INTO `user_roles` VALUES (3, 1);
+
+-- ----------------------------
+-- Table structure for wx_run
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_run`;
+CREATE TABLE `wx_run`  (
+  `openid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '微信唯一标识',
+  `time` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '时间',
+  `step` int(7) NULL DEFAULT NULL COMMENT '运动步数'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信运动步数记录表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
