@@ -1,5 +1,7 @@
 {
 	"usingComponents": {
-		"van-button": "/miniprogram_npm/vant-weapp/button/index"
-	}
+		"van-card": "@vant/weapp/card/index"
+	},
+	"enablePullDownRefresh": true,
+	"navigationBarTitleText": "运动咨询"
 }

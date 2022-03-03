@@ -1,0 +1,13 @@
+.title {
+    text-align: center;
+    color: chocolate;
+    margin-bottom: 15px;
+}
+
+.step {
+    font-family: 华文行楷;
+    font-size: 22px;
+    color: chartreuse;
+    margin-top: 10px;
+    text-align: center;
+}

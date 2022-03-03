@@ -1,0 +1,100 @@
+<view>
+    <van-cell-group>
+        <van-field
+            value="{{ dataInfo.nutrient }}"
+            label="营养元素"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.heat + '千卡' }}"
+            label="热量"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.protein + '克' }}"
+            label="蛋白质"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.fat + '克' }}"
+            label="脂肪"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.carbonWater + '克' }}"
+            label="碳水化合物"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.dietaryFiber + '克' }}"
+            label="膳食纤维"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.vitaminA + 'ugRE' }}"
+            label="维生素A"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.vitaminC + '毫克' }}"
+            label="维生素C"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.vitaminE + '克' }}"
+            label="维生素E"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.carrot + '微克' }}"
+            label="胡萝卜素"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.vitaminB1 + '毫克' }}"
+            label="维生素B1"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.vitaminB2 + '毫克' }}"
+            label="维生素B2"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.niacin + '毫克' }}"
+            label="烟酸"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.cholesterol + '毫克' }}"
+            label="胆固醇"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.magnesium + '毫克' }}"
+            label="镁"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.iron + '毫克' }}"
+            label="铁"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.calcium + '毫克' }}"
+            label="钙"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.zinc + '毫克' }}"
+            label="锌"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.copper + '毫克' }}"
+            label="铜"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.manganese + '毫克' }}"
+            label="锰"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.potassium + '毫克' }}"
+            label="钾"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.phosphorus + '毫克' }}"
+            label="磷"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.sodium + '毫克' }}"
+            label="钠"
+            input-align="right"/>
+        <van-field
+            value="{{ dataInfo.selenium + '毫克' }}"
+            label="硒"
+            input-align="right"/>
+</van-cell-group>
+</view>

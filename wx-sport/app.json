@@ -3,10 +3,16 @@
 		"pages/index/index",
 		"pages/food/food",
 		"pages/sport/sport",
-		"pages/user/user"
+		"pages/user/user",
+		"pages/index/details/details",
+		"pages/food/foods/foods",
+		"pages/food/foods/details/details",
+		"pages/food/foods/foodDetails/foodsDetails"
 	],
 	"usingComponents": {
-		"van-icon": "/miniprogram_npm/vant-weapp/icon/index"
+		"van-icon": "@vant/weapp/icon/index",
+		"van-button": "@vant/weapp/button/index",
+		"van-empty": "@vant/weapp/empty/index"
 	},
 	"window": {
 		"backgroundTextStyle": "light",

@@ -145,4 +145,15 @@
         select * from food where type_id = #{value}
     </select>
 
+    <select id="findMiniPage" resultType="com.ajie.entity.Food">
+        select * from food where type_id=#{typeId}
+        <if test="keywords != null and keywords.length > 0">
+            and title like concat('%', #{keywords}, '%')
+        </if>
+    </select>
+
+    <select id="findById" resultType="com.ajie.entity.Food">
+        select * from food where id=#{id}
+    </select>
+
 </mapper>

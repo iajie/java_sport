@@ -1,6 +1,7 @@
 package com.ajie.mapper;
 
 import com.ajie.entity.Food;
+import com.ajie.utils.Result;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
@@ -56,4 +57,8 @@ public interface FoodMapper {
      * @param foods
      */
     void insertList(@Param("foods") List<Food> foods);
+
+    Page<Food> findMiniPage(@Param("typeId") Long typeId, @Param("keywords") String keywords);
+
+    Food findById(Long id);
 }

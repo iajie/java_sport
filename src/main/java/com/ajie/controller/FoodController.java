@@ -1,6 +1,5 @@
 package com.ajie.controller;
 
-import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import com.ajie.entity.Food;
@@ -10,6 +9,9 @@ import com.ajie.utils.QiniuUtils;
 import com.ajie.utils.QueryInfo;
 import com.ajie.utils.Result;
 import com.ajie.utils.StringUtils;
+import com.alibaba.fastjson.JSONObject;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -79,6 +81,7 @@ public class FoodController {
     public Result updateType(@RequestBody FoodType foodType) {
         return foodService.updateType(foodType);
     }
+
     @ApiOperation(value = "分页查询菜品分类及其菜品信息")
     @PostMapping("/type/findPage")
     public Result findPage(@RequestBody QueryInfo queryInfo) {
@@ -93,6 +96,18 @@ public class FoodController {
     @PostMapping("/findPage")
     public Result findFoodPage(@RequestBody QueryInfo queryInfo) {
         return foodService.findFoodPage(queryInfo);
+    }
+
+    @ApiOperation(value = "小程序分页查询食物列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(value = "页码", name = "pageNumber", required = true, dataTypeClass = Integer.class),
+            @ApiImplicitParam(value = "页数大小", name = "pageSize", required = true, dataTypeClass = Integer.class),
+            @ApiImplicitParam(value = "食物类别", name = "typeId", required = true, dataTypeClass = Long.class),
+            @ApiImplicitParam(value = "关键字", name = "keywords", dataTypeClass = String.class)
+    })
+    @PostMapping("/mini/findPage")
+    public Result findMiniPage(@RequestBody JSONObject object) {
+        return foodService.findMiniPage(object);
     }
 
     @ApiOperation(value = "添加菜品")
@@ -118,4 +133,10 @@ public class FoodController {
     public Result findFoodByTypeId(@RequestBody QueryInfo queryInfo) {
         return foodService.findFoodByTypeId(queryInfo);
     }
+
+    @GetMapping("/{id}")
+    public Result foodInfo(@PathVariable Long id) {
+        return foodService.findById(id);
+    }
+
 }

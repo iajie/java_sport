@@ -1,6 +1,9 @@
 <!--index.wxml-->
-<view class="container">
-	<view class="userinfo">
-		<van-button type="danger" bindtap="getInfo">获取信息</van-button>
-	</view>
+<view>
+	<van-card wx:if="{{ tableList.length > 0 }}" wx:for="{{ tableList }}" wx:key="index" desc="发表时间：{{ item.createTime }}" title="标题：{{ item.title }}">
+		<view slot="footer">
+			<van-button type="primary" size="mini" data-id="{{ item.id }}" bindtap="toDetails">查看详情</van-button>
+		</view>
+	</van-card>
+	<van-empty wx:if="{{ tableList.length < 1 }}" description="暂无数据" />
 </view>

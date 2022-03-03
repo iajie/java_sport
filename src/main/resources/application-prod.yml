@@ -6,19 +6,21 @@ spring:
     # 用户名
     username: root
     # 密码
-    password: 123456
+    password: Sport123456.
     # mysql的连接路径
-    url: jdbc:mysql://116.62.54.239:3306/sport?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/sport?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     # 配置驱动类
     driver-class-name: com.mysql.jdbc.Driver
   # redis相关配置
   redis:
     # 配置主机
-    host: 116.62.54.239
+    host: localhost
     # 配置使用的数据库
     database: 0
     # 指定端口
     port: 6379
+    # 密码
+    password: 123456.
   # 邮件配置
   mail:
     # smtp服务主机(163) QQ：smtp.qq.com
@@ -33,3 +35,16 @@ spring:
     username: 1737194722@qq.com
     # 授权码  WXAMDNQSECKZDDAJ
     password: bxazkjooluvjebif
+    # 服务端口
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          starttls:
+            enable: true
+            required: true

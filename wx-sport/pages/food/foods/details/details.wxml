@@ -1,0 +1,26 @@
+<view>
+    <!-- 轮播图 -->
+    <swiper indicator-dots autoplay interval="2000">
+        <block wx:for="{{ imageUrls }}" wx:key="index">
+            <swiper-item>
+                <image src="{{ item }}" class="swiper-image" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <!-- 食物描述 -->
+    <van-cell-group>
+        <van-cell title-class="title" title="{{dataInfo.title}}" value="{{ dataInfo.heat + ' 千卡 / ' + dataInfo.nutrient }}" />
+    </van-cell-group>
+    <!-- 食物统计(饼状图) -->
+    <view style="width: 100%;height: 200px;">
+        <echarts id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></echarts>
+    </view>
+    <!-- 温馨提示 -->
+    <view class="hr"/>
+    <view class="hr-text" bindtap="getFoodDetail">查看全部营养元素</view>
+    <view class="tip">
+        <view style="font-size: 14px;">使用提示：</view>
+        绿灯食物：代表在膳食指南推荐范围内可以每天足量吃的食物，
+        绝大部分的蔬菜水果、粗细粮、奶制品以及低脂肪的肉类都是绿灯食物。
+    </view>
+</view>

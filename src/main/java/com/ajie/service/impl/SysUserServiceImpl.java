@@ -102,7 +102,7 @@ public class SysUserServiceImpl implements SysUserService {
      * @return
      */
     @Override
-    public Result miniLogin(String openid) {
+    public Result miniLogin(String openid, String sessionKey) {
         UserDetails userDetails;
         userDetails = userDetailsService.loadUserByUsername(openid);
         if (userDetails == null) {
@@ -123,6 +123,7 @@ public class SysUserServiceImpl implements SysUserService {
         map.put("token", token);
         map.put("userInfo", userDetails);
         map.put("openid", openid);
+        map.put("sessionKey", sessionKey);
         return Result.success("登录成功！", map);
     }
 

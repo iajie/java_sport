@@ -4,6 +4,7 @@ import com.ajie.entity.Food;
 import com.ajie.entity.FoodType;
 import com.ajie.utils.QueryInfo;
 import com.ajie.utils.Result;
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
 
@@ -82,4 +83,13 @@ public interface FoodService {
     Result typeAll();
 
     Result findFoodByTypeId(QueryInfo queryInfo);
+
+    Result findMiniPage(JSONObject object);
+
+    /**
+     * 根据ID获取食物信息
+     * @param id
+     * @return
+     */
+    Result findById(Long id);
 }

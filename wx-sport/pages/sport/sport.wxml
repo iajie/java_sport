@@ -1,1 +1,11 @@
-<view>运动步数统计</view>
+<view class="title">
+    近四周运动数据统计(步/天)
+</view>
+<!-- 运功统计 必须设置宽高，不然不显示 -->
+<view style="width: 100%;height: 400px;">
+    <echarts id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></echarts>
+</view>
+<!-- 今日步数 -->
+<view class="step">
+    今日走路{{ step }}步，消耗了{{ step * 28 / 1000 }}千卡
+</view>

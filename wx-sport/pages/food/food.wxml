@@ -1,1 +1,13 @@
-<view>饮食推荐</view>
+<view>
+    <van-grid column-num="3">
+        <van-grid-item 
+            use-slot 
+            wx:for="{{ tableList }}" 
+            wx:key="index" 
+            link-type="navigateTo"
+            url="/pages/food/foods/foods?id={{ item.id }}">
+            <iconfont name="{{ item.icon }}"/>
+            <view class="title">{{ item.title }}</view>
+        </van-grid-item>
+    </van-grid>
+</view>

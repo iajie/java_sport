@@ -11,6 +11,10 @@
         </if>
     </select>
 
+    <select id="findInfo" resultType="com.ajie.entity.Sport">
+        select * from sport where id=#{id}
+    </select>
+
     <!-- 删除 -->
     <delete id="delete" parameterType="java.lang.Long">
         update sport set del=1 where id=#{id}
@@ -35,5 +39,13 @@
         </set>
         where id=#{id}
     </update>
+
+    <!-- 添加微信运动步数 -->
+    <insert id="insertStep" parameterType="com.ajie.entity.WxRun">
+        insert into wx_run values
+        <foreach collection="runs" item="i" separator=",">
+            (#{i.openid}, #{i.time}, #{i.step})
+        </foreach>
+    </insert>
 
 </mapper>

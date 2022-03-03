@@ -1,0 +1,5 @@
+<view>
+    创建者：<van-tag type="warning">{{ dataInfo.createName }}</van-tag>
+    创建时间：<van-tag type="primary">{{ dataInfo.createTime }}</van-tag>
+    <towxml nodes="{{dataInfo.content}}"/>
+</view>

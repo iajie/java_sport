@@ -3,6 +3,7 @@ package com.ajie.service;
 import com.ajie.entity.Food;
 import com.ajie.entity.FoodType;
 import com.ajie.entity.Sport;
+import com.ajie.entity.WxRun;
 import com.ajie.utils.QueryInfo;
 import com.ajie.utils.Result;
 
@@ -19,6 +20,13 @@ public interface SportService {
      * @return
      */
     Result delete(Long id);
+
+    /**
+     * 获取详情
+     * @param id
+     * @return
+     */
+    Result findInfo(Long id);
 
     /**
      * 修改菜品
@@ -40,5 +48,9 @@ public interface SportService {
      * @return
      */
     Result findPage(QueryInfo queryInfo);
+
+    Result insertStep(List<WxRun> runs);
+
+    Result stepReport();
 
 }

@@ -1,0 +1,28 @@
+.swiper-image {
+    width: 100%;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.tip {
+    margin: 3% 3% auto;
+    font-size: 13px;
+    color:chocolate;
+}
+
+.hr {
+    background: #E4E6ED;
+    width: 100%;
+    height: 1rpx;
+}
+
+.hr-text {
+    text-align: right;
+    margin-right: 3%;
+    font-size: 13px;
+    color: dodgerblue;
+    margin-bottom: 2px;
+}

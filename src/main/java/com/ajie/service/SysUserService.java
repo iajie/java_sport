@@ -24,7 +24,7 @@ public interface SysUserService {
      * @param openid 登录参数： 账号和密码
      * @return 返回token，用token去获取资源
      */
-    Result miniLogin(String openid);
+    Result miniLogin(String openid, String sessionKey);
 
     /**
      * 根据用户名获取用户信息

@@ -21,7 +21,7 @@ spring:
   # 邮件配置
   mail:
     # smtp服务主机(163) QQ：smtp.qq.com
-    host: smtp.163.com
+    host: smtp.qq.com
     # 服务协议
     protocol: smtp
     # 设置编码集
@@ -29,6 +29,19 @@ spring:
     # 允许测试连接
     test-connection: true
     # 设置发件人
-    username: ajie20999@163.com
-    # 授权码  bxazkjooluvjebif
-    password: WXAMDNQSECKZDDAJ
+    username: 1737194722@qq.com
+    # 授权码  WXAMDNQSECKZDDAJ
+    password: bxazkjooluvjebif
+    # 服务端口
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          starttls:
+            enable: true
+            required: true

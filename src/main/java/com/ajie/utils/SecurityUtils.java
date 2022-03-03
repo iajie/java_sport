@@ -36,4 +36,12 @@ public class SecurityUtils {
     public static Long getUserId() {
         return getUser().getId();
     }
+
+    /**
+     * 在security中获取用户小程序ID
+     * @return
+     */
+    public static String getOpenId() {
+        return getUser().getOpenId();
+    }
 }

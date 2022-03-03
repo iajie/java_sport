@@ -1,1 +1,6 @@
-<view>个人中心</view>
+<view class="container">
+	<view class="userinfo">
+		<cover-image src="{{ userInfo.avatar }}" bindtap="getInfo" class="userinfo-avatar"/>
+        <van-button type="warning" size="small" bindtap="logout">退出登录</van-button>
+	</view>
+</view>

@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vant-weapp": "^0.5.29"
+    "@vant/weapp": "^1.10.2"
+  },
+  "devDependencies": {
+    "mini-program-iconfont-cli": "^0.6.1"
   }
 }

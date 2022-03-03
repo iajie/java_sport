@@ -1,0 +1,18 @@
+<view>
+    <van-search  value="{{ queryInfo.keywords }}" shape="round" background="#4fc08d" placeholder="请输入搜索关键词" bind:change="onChange"/> 
+        <van-card wx:if="{{ tableList.length > 0 }}" wx:for="{{ tableList }}" wx:key="index" desc="{{ item.heat + ' 千卡 / ' + item.nutrient }}" title="{{ item.title }}" thumb="{{ image.split(item.imageUrls) }}" link-type="navigateTo" thumb-link="/pages/food/foods/details/details?id={{item.id}}" data-image="{{ item.imageUrls }}" />
+        <van-empty wx:if="{{ tableList.length < 1 }}" description="暂无数据" />
+</view>
+<!-- wxml页面内置js -->
+<wxs module="image">
+    // 暴露使用的方法
+    module.exports = {
+        split: function (str) {
+            if (str) {
+                return 'http://ajie.jierxm.com/' + str.split(',')[0];
+            } else {
+                return 'https://img.yzcdn.cn/vant/cat.jpeg';
+            }
+        }
+    }
+</wxs>

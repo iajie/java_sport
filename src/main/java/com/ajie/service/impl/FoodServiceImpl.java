@@ -8,6 +8,7 @@ import com.ajie.service.FoodService;
 import com.ajie.utils.PageResult;
 import com.ajie.utils.QueryInfo;
 import com.ajie.utils.Result;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -116,5 +117,22 @@ public class FoodServiceImpl implements FoodService {
         String queryString = queryInfo.getQueryString();
         Page<Food> foods = foodMapper.findByTypeId(queryString);
         return Result.success("食物查询成功！", new PageResult(foods.getTotal(), foods.getResult()));
+    }
+
+    @Override
+    public Result findMiniPage(JSONObject object) {
+        PageHelper.startPage(object.getInteger("pageNumber"), object.getInteger("pageSize"));
+        Long typeId = object.getLong("typeId");
+        String keywords = object.getString("keywords");
+        Page<Food> foods = foodMapper.findMiniPage(typeId, keywords);
+        return PageResult.pageRsult(foods.getTotal(), foods.getResult());
+    }
+
+    @Override
+    public Result findById(Long id) {
+        if (id == null) {
+            return Result.fail("请传递食物编号");
+        }
+        return Result.success("食物信息查询成功", foodMapper.findById(id));
     }
 }

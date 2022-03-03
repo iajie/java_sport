@@ -1,17 +1,51 @@
+// index.js
+// 获取应用实例
+const app = getApp()
+ 
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-
+		userInfo: {},
+	},
+	/** 获取用户信息 */
+	getInfo() {
+		wx.getUserProfile({
+			desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+			success: (res) => {
+				let { avatarUrl, nickName, gender, country, province, city } = res.userInfo;
+				let form = {
+					nickName: nickName,
+					sex: gender,
+					avatar: avatarUrl,
+					address: country + province + city,
+					openId: wx.getStorageSync('openid')
+				};
+				app.ajax('mini/update/info', 'POST', form).then((res) => {
+					wx.showToast({
+					  	title: res.data.message,
+					});
+				});
+			}
+		})
 	},
 
+	/**
+	 * 退出登录
+	 */
+	logout() {
+		wx.clearStorageSync();
+		wx.exitMiniProgram();
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		this.setData({
+			userInfo: wx.getStorageSync('userInfo')
+		});
 	},
 
 	/**
