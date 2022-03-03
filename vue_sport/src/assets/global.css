@@ -1,0 +1,35 @@
+/* 编写全局样式 */
+
+/* 主页面样式 */
+html, body, #app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 表格样式 */
+.el-table {
+    width: 100%;
+    margin-top: 20px;
+    min-height: 400px;
+}
+/* 面包屑导航的全局样式 */
+.el-breadcrumb {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* 分页样式 */
+.el-pagination {
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* 对话框样式 */
+/* .el-dialog {
+    text-align: left;
+} */
+
+.main-card {
+    min-height: 570px;
+}
