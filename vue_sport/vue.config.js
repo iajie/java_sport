@@ -2,7 +2,7 @@ module.exports = {
     // vue代理后端接口配置
     devServer: {
         //设置端口信息
-        port: 80,
+        port: 8888,
         //设置是否启动时打开浏览器
         open: true,
         //设置代理
