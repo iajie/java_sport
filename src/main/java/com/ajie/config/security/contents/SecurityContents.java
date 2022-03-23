@@ -22,6 +22,7 @@ public class SecurityContents {
             "/tool/forget/password",
             "/tool/sms",
             "/user/sms/login",
+            "/goods/batchExport",
 
             // 小程序相关
             "/mini/login",

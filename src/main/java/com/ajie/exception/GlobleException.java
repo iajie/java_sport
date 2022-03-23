@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -36,6 +37,14 @@ public class GlobleException {
     public Result exception(UsernameNotFoundException e) {
         log.error("用户名没有找到-->{}", e.getMessage());
         return Result.fail(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    public Result exception(HttpRequestMethodNotSupportedException e) {
+        String message = e.getMessage();
+        log.error("请求方式错误-->{}", message);
+        return Result.fail("不需要" + message.split("'")[1] + "请求");
     }
 
 }
