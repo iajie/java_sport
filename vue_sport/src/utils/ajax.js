@@ -35,7 +35,7 @@ ajax.interceptors.response.use((res) => {
     if (!res.data.flag) {
         Message.error(res.data.message);
     }
-    return res;
+    return res.data;
 }, (err) => {
     // 三个等号： 绝对等于 0=0 0!='0'  双等号： 0=0 0='0'
     if (err.response.status === 400) {
@@ -56,6 +56,7 @@ ajax.interceptors.response.use((res) => {
     } else {
         Message.error('未知错误！');
     }
+    return err;
 });
 
 Vue.prototype.$ajax = ajax;
