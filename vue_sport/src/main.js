@@ -15,9 +15,12 @@ import '@/utils/icons';
 import '@/utils/markdown';
 // 引入高亮
 import '@/utils/highlight';
+// 引入搜索组件
+import Search from '@/compoent/Search';
 
 Vue.prototype.$qiniu = 'http://vue.jierxm.com/';
 
+Vue.component('search', Search);
 Vue.config.productionTip = false;
 // 是否在浏览器上开启vue调试工具
 Vue.config.devtools = false;
