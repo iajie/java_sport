@@ -1,0 +1,3 @@
+<view>
+    <van-button type="primary" bindtap="login" class="userinfo">一键登陆</van-button>
+</view>

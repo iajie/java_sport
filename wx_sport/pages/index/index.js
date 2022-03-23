@@ -10,14 +10,42 @@ Page({
 		// 请求数据
 		queryInfo: {
 			pageNumber: 1,
-			pageSize: 5
+			pageSize: 10
 		},
 		//上拉时是否继续请求数据，即是否还有更多数据  true可以继续上拉，false禁止上拉数据
 		hasMoreData: true,
 		// 响应数据
 		tableList: [],
+		active: 1,
+		url: 'goods/findPage',
 	},
-
+	onChange(e) {
+		this.setData({
+			queryInfo: {
+				pageNumber: 1,
+				pageSize: 10,
+			},
+			hasMoreData: true,
+			tableList: [],
+		});
+		// 获取选项卡下标
+		let index = e.detail.index;
+		// 运动资讯
+		if (index === 0) {
+			this.setData({
+				url: 'sport/findPage',
+			});
+		} else if (index === 1) {
+			this.setData({
+				url: 'goods/findPage'
+			});
+		} else if (index == 2) {
+			this.setData({
+				url: 'motion/findPage'
+			});
+		} 
+		this.findPage('加载中...');
+	},
 	/**
 	 * 获取分页数据
 	 * @param {*} message 提示语
@@ -28,11 +56,11 @@ Page({
 			title: message,
 			icon: 'loading',
 		});
-		app.ajax('sport/findPage', 'POST', this.data.queryInfo).then((res) => {
+		app.ajax(this.data.url, 'POST', this.data.queryInfo).then((res) => {
 			// 将原有的结果列表定义为临时数组
 			let temp = this.data.tableList;
 			// 将新的结果接收
-			let result = res.data.rows;
+			let result = res.rows;
 			if (result.length > 0) {
 				// 如果分页页码为1，那么说明用户在下拉
 				if (this.data.queryInfo.pageNumber == 1) {
@@ -78,7 +106,17 @@ Page({
 	 */
 	toDetails(event) {
 		wx.navigateTo({
-			url: `/pages/index/details/details?id=${event.target.dataset.id}`
+			url: `/pages/index/details/details?id=${event.target.dataset.id}&type=1`
+		});
+	},
+
+	/**
+	 * 跳转详情页
+	 * @param {*} id 
+	 */
+	toDetails2(event) {
+		wx.navigateTo({
+			url: `/pages/index/details/details?id=${event.target.dataset.id}&type=2`
 		});
 	},
 
@@ -86,6 +124,11 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		if (!wx.getStorageSync('userInfo')) {
+			 wx.redirectTo({
+			   url: '/pages/login/login',
+			 })
+		}
 		this.findPage('加载中...');
 	},
 
@@ -101,6 +144,20 @@ Page({
 	 */
 	onShow: function () {
 		this.getTabBar().init();
+		if (!wx.getStorageSync('userInfo')) {
+			this.setData({
+				queryInfo: {
+					pageNumber: 1,
+					pageSize: 10,
+				},
+				hasMoreData: true,
+				tableList: [],
+			});
+			wx.showToast({
+			  title: '请登陆后操作',
+			  icon: 'error'
+			});
+		} 
 	},
 
 	/**

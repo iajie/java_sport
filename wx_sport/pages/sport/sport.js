@@ -24,7 +24,7 @@ Page({
 	 */
 	onLoad: function (options) {
 		app.ajax('mini/step/report', 'GET').then((res) => {
-			const { week1, week2, week3, week4 } = res.data.data;
+			const { week1, week2, week3, week4 } = res.data;
 			//迭代运动信息
 			for (let i=0; i<7; i++) {
 				//装本周数据

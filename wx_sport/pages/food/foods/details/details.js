@@ -75,7 +75,7 @@ Page({
      */
     onLoad: function (options) {
         app.ajax(`food/${options.id}`, 'GET').then((result) => {
-            let { data } = result.data;
+            let { data } = result;
             let temp = [];
             if (data.imageUrls) {
                 let arr = data.imageUrls.split(',');

@@ -7,21 +7,36 @@ Page({
     data: {
         // 存储运动咨询详情
         dataInfo: {},
+        url: '',
+        flag: false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        app.ajax(`sport/${options.id}`, 'GET').then((res) => {
-            let content = res.data.data.content;
-            if (content) {
-                res.data.data.content = app.towxml(content, 'markdown', { theme:'dark' });
-            }
-            this.setData({
-                dataInfo: res.data.data
+        const { id, type } = options;
+        if (type == 1) {
+            app.ajax(`sport/${id}`, 'GET').then((res) => {
+                let content = res.data.content;
+                if (content) {
+                    this.setData({
+                        dataInfo: app.towxml(content, 'markdown', { theme:'dark' }),
+                        flag: true
+                    });
+                }
             });
-        });
+        } else {
+            app.ajax(`motion/${id}`, 'GET').then((res) => {
+                let content = res.data.introduction;
+                if (content) {
+                    this.setData({
+                        dataInfo: app.towxml(content, 'markdown', { theme:'dark' }),
+                        flag: true
+                    });
+                }
+            });
+        }
     },
 
     /**

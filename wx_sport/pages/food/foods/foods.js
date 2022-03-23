@@ -36,7 +36,7 @@ Page({
 			// 将原有的结果列表定义为临时数组
 			let temp = this.data.tableList;
 			// 将新的结果接收
-			let result = res.data.rows;
+			let result = res.rows;
 			if (result.length > 0) {
 				// 如果分页页码为1，那么说明用户在下拉
 				if (this.data.queryInfo.pageNumber == 1) {

@@ -1,9 +1,33 @@
 <!--index.wxml-->
 <view>
-	<van-card wx:if="{{ tableList.length > 0 }}" wx:for="{{ tableList }}" wx:key="index" desc="发表时间：{{ item.createTime }}" title="标题：{{ item.title }}">
-		<view slot="footer">
-			<van-button type="primary" size="mini" data-id="{{ item.id }}" bindtap="toDetails">查看详情</van-button>
-		</view>
-	</van-card>
-	<van-empty wx:if="{{ tableList.length < 1 }}" description="暂无数据" />
+	<van-tabs active="{{ active }}" bind:change="onChange" color="#07C160">
+		<van-tab title="运动资讯">
+			<van-card wx:if="{{ tableList.length > 0 }}" wx:for="{{ tableList }}" wx:key="index" desc="发表时间：{{ item.createTime }}" title="标题：{{ item.title }}">
+				<view slot="footer">
+					<van-button type="primary" size="mini" data-id="{{ item.id }}" bindtap="toDetails">查看详情</van-button>
+				</view>
+			</van-card>
+			<van-empty wx:if="{{ tableList.length < 1 }}" description="暂无数据" />
+		</van-tab>
+		<van-tab title="运动商品">
+			<van-card 
+			wx:if="{{ tableList.length > 0 }}" 
+			wx:for="{{ tableList }}" 
+			wx:key="index" 
+			desc="特色功能：{{ item.characteristic }}" 
+			num="{{ item.number }}"
+			thumb="{{ item.imageUrl }}"
+			price="{{ item.price }}"
+			title="{{ item.name }}"/>
+			<van-empty wx:if="{{ tableList.length < 1 }}" description="暂无数据" />
+		</van-tab>
+		<van-tab title="运动项目">
+			<van-card wx:if="{{ tableList.length > 0 }}" wx:for="{{ tableList }}" wx:key="index" desc="适于年龄：{{ item.applicableAge }}" title="运动名称：{{ item.name }}">
+				<view slot="footer">
+					<van-button type="warning" size="mini" data-id="{{ item.id }}" bindtap="toDetails2">查看详情</van-button>
+				</view>
+			</van-card>
+			<van-empty wx:if="{{ tableList.length < 1 }}" description="暂无数据" />
+		</van-tab>
+	</van-tabs>
 </view>
