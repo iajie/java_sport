@@ -33,3 +33,57 @@ html, body, #app {
 .main-card {
     min-height: 570px;
 }
+
+
+
+/* 对话框透明度 */
+.el-dialog {
+    opacity: 0.9;
+}
+
+/* 默认不显示手机端markdown */
+.phone-md {
+    display: none !important;
+}
+
+
+/* 适应手机端 */
+
+/* 消息框 */
+@media screen and (max-width: 500px) {
+    .el-message {
+        min-width: 80% !important;
+    }
+    .el-message__content {
+        font-size: 5px !important;
+    }
+}
+
+/* 提示框 */
+@media screen and (max-width: 500px) {
+    .el-message-box{
+        width: 80% !important;
+    }
+    .el-dialog {
+        width: 90% !important;
+    }
+}
+
+
+/* 面包屑样式 */
+@media screen and (max-width: 500px) {
+    .el-breadcrumb{
+        margin-bottom: 5px !important;
+        font-size: 5px !important;
+    }
+}
+
+/* 编辑器 */
+@media screen and (max-width: 500px) {
+    .phone-md {
+        display: block !important;
+    }
+    .pc-md {
+        display: none !important;
+    }
+}
