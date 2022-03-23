@@ -3,9 +3,7 @@
         <el-card>
             <el-row>
                 <el-col :span="8">
-                    <el-input placeholder="请输入内容" clearable v-model="queryInfo.queryString" @clear="findPage">
-                        <el-button slot="append" icon="el-icon-search" @click="findPage"/>
-                    </el-input>
+                    <search :value="queryInfo.queryString" @search="querySearch"/>
                 </el-col>
                 <el-col :span="2">
                     <el-button style="margin-left: 10px;" v-hasPermi="['MENU_INSERT']" @click="insert" type="primary">添加信息</el-button>
@@ -152,17 +150,20 @@ export default {
     methods: {
         findParent() {
             this.$ajax.get('/menu/findParent').then((res) => {
-                this.parentList = res.data.data;
+                this.parentList = res.data;
             });
         },
-
+        querySearch(value) {
+            this.queryInfo.queryString = value;
+            this.findPage();
+        },
         /** 分页查询  */
         findPage() {
             this.loading = true;
             this.$ajax.post('/menu/findPage', this.queryInfo).then((res) => {
                 this.loading = false;
-                this.tableList = res.data.rows;
-                this.total = res.data.total;
+                this.tableList = res.rows;
+                this.total = res.total;
             });
         },
         /** 页码改变事件 */
@@ -192,7 +193,7 @@ export default {
             }).then(() => {
                 //调后端删除权限接口
                 this.$ajax.delete(`/menu/delete/${id}`).then((res) => {
-                    this.$message.success(res.data.message);
+                    this.$message.success(res.message);
                     this.queryInfo.pageNumber = 1;
                     this.findPage();
                 });
@@ -242,13 +243,13 @@ export default {
                 //校验通过 判断是否是新增
                 if (this.form.id === undefined || this.form.id === null) {
                     this.$ajax.post('/menu/insert', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.open = false;
                         this.findPage();
                     });
                 } else {
                     this.$ajax.put('/menu/update', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.open = false;
                         this.findPage();
                     });

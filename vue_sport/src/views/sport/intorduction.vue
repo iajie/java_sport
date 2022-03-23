@@ -3,9 +3,7 @@
         <el-card>
             <el-row>
                 <el-col :span="8">
-                    <el-input placeholder="请输入内容" clearable v-model="queryInfo.queryString" @clear="findPage">
-                        <el-button slot="append" icon="el-icon-search" @click="findPage"/>
-                    </el-input>
+                    <search :value="queryInfo.queryString" @search="querySearch" />
                 </el-col>
                 <el-col :span="2">
                     <el-button style="margin-left: 10px;" @click="insert" type="primary">添加信息</el-button>
@@ -120,15 +118,19 @@ export default {
             this.loading = true;
             this.$ajax.post('/sport/findPage', this.queryInfo).then((res) => {
                 this.loading = false;
-                this.tableList = res.data.rows.filter(item => {
+                this.tableList = res.rows.filter(item => {
                     if (item.content && item.content !== '') {
                         item.content = marked(item.content);
                         item.remark = item.content;
                     }
                     return true;
                 });
-                this.total = res.data.total;
+                this.total = res.total;
             });
+        },
+        querySearch(value) {
+            this.queryInfo.queryString = value;
+            this.findPage();
         },
         /** 页码改变事件 */
         handlePageNumber(newPageNumber) {
@@ -151,7 +153,7 @@ export default {
             }).then(() => {
                 //调后端删除权限接口
                 this.$ajax.delete(`/sport/delete/${id}`).then((res) => {
-                    this.$message.success(res.data.message);
+                    this.$message.success(res.message);
                     this.queryInfo.pageNumber = 1;
                     this.findPage();
                 });
@@ -176,13 +178,13 @@ export default {
                 //校验通过 判断是否是新增
                 if (this.form.id === undefined || this.form.id === null) {
                     this.$ajax.post('/sport/insert', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.open = false;
                         this.findPage();
                     });
                 } else {
                     this.$ajax.put('/sport/update', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.open = false;
                         this.findPage();
                     });
@@ -193,7 +195,7 @@ export default {
             let formData = new FormData();
             formData.append('file', $e);
             this.$ajax.post('/tool/upload', formData).then((res) => {
-                this.$refs.md.$img2Url(pos, this.$qiniu + res.data.data);
+                this.$refs.md.$img2Url(pos, this.$qiniu + res.data);
             });
         },
     }

@@ -3,10 +3,7 @@
         <el-card>
             <el-row :gutter="25">
                 <el-col :span="10">
-                    <!-- 搜索添加 -->
-                    <el-input placeholder="请输入搜索内容" v-model="queryInfo.queryString" clearable @clear="findPage">
-                        <el-button slot="append" icon="el-icon-search" @click="findPage"/>
-                    </el-input>
+                    <search :value="queryInfo.queryString" @search="querySearch"/>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="addShow">添加分类</el-button>
@@ -108,6 +105,10 @@ export default {
                 this.tableList = res.data.data.rows;
                 this.total = res.data.data.total;
             });
+        },
+        querySearch(value) {
+            this.queryInfo.queryString = value;
+            this.findPage();
         },
         handleSizeChange(newPageSize) {
             this.queryInfo.pageSize = newPageSize;

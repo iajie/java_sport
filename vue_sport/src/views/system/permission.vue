@@ -3,9 +3,7 @@
         <el-card class="main-card">
             <el-row>
                 <el-col :span="8">
-                    <el-input placeholder="请输入内容" clearable v-model="queryInfo.queryString" @clear="findPage">
-                        <el-button slot="append" icon="el-icon-search" @click="findPage"/>
-                    </el-input>
+                    <search :value="queryInfo.queryString" @search="querySearch"/>
                 </el-col>
                 <el-col :span="2">
                     <el-button style="margin-left: 10px;" @click="insert" v-hasPermi="['PRE_INSERT']" type="primary">添加信息</el-button>
@@ -124,9 +122,13 @@ export default {
             this.loading = true;
             this.$ajax.post('/permission/findPage', this.queryInfo).then((res) => {
                 this.loading = false;
-                this.tableList = res.data.rows;
-                this.total = res.data.total;
+                this.tableList = res.rows;
+                this.total = res.total;
             });
+        },
+        querySearch(value) {
+            this.queryInfo.queryString = value;
+            this.findPage();
         },
         /** 页码改变事件 */
         handlePageNumber(newPageNumber) {
@@ -149,7 +151,7 @@ export default {
             }).then(() => {
                 //调后端删除权限接口
                 this.$ajax.delete(`/permission/delete/${id}`).then((res) => {
-                    this.$message.success(res.data.message);
+                    this.$message.success(res.message);
                     this.queryInfo.pageNumber = 1;
                     this.findPage();
                 });
@@ -176,18 +178,18 @@ export default {
                 //校验通过 判断是否是新增
                 if (this.form.id === undefined || this.form.id === null) {
                     this.$ajax.post('/permission/insert', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.open = false;
                         this.findPage();
                     });
                 } else {
                     this.$ajax.put('/permission/update', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.open = false;
                         this.findPage();
                     });
                 }
-                
+
             });
         },
         /** 改变权限数据的状态 */

@@ -94,7 +94,7 @@ export default {
                     sessionStorage.clear();
                     //跳转到登录页面
                     this.$router.replace('/login');
-                    this.$message.success(res.data.message);
+                    this.$message.success(res.message);
                     window.location.reload();
                 });
             }).catch(() => {});
@@ -142,8 +142,8 @@ export default {
 }
 
 .menu-button {
-	font-size: 20px; 
-	background-color: #2e363f; 
+	font-size: 20px;
+	background-color: #2e363f;
 	color: #fff;
 	cursor: pointer;
 }

@@ -3,9 +3,7 @@
         <el-card class="main-card">
             <el-row>
                 <el-col :span="8">
-                    <el-input placeholder="请输入内容" clearable v-model="queryInfo.queryString" @clear="findPage">
-                        <el-button slot="append" icon="el-icon-search" @click="findPage"/>
-                    </el-input>
+                    <search :value="queryInfo.queryString" @search="querySearch"/>
                 </el-col>
                 <el-col :span="2">
                     <el-button style="margin-left: 10px;" @click="insert" v-hasPermi="['PRE_USER_INSERT']" type="primary">添加信息</el-button>
@@ -79,12 +77,12 @@
                                 <span>权限列表</span>
                             </div>
                              <el-checkbox-group v-model="checkPermissions">
-                                <el-checkbox 
+                                <el-checkbox
                                     border
                                     size="small"
-                                    v-for="(item, index) in permissions" 
+                                    v-for="(item, index) in permissions"
                                     :disabled="!item.status"
-                                    :label="item.label" 
+                                    :label="item.label"
                                     :key="index"
                                     @change="permissionChange(item)"/>
                             </el-checkbox-group>
@@ -98,7 +96,7 @@
                                 <el-radio :label="true">是</el-radio>
                                 <el-radio :label="false">否</el-radio>
                             </el-radio-group>
-                        </el-form-item> 
+                        </el-form-item>
                     </el-col>
                 </el-row>
             </el-form>
@@ -132,7 +130,7 @@ export default {
             // 是否打开对话框
             open: false,
             // 加载效果
-            loading: false, 
+            loading: false,
             // 表单数据
             form: {
                 status: true
@@ -169,7 +167,7 @@ export default {
         /** 查询所有的菜单信息 */
         findMenusAndPermissions() {
             this.$ajax.get('/menu/findParent').then((res) => {
-                this.menuList = res.data.data;
+                this.menuList = res.data;
                 // 对菜单列表进行改造
                 this.menuList.filter(item => {
                     item.disabled = !item.status;
@@ -180,10 +178,9 @@ export default {
                     }
                     return true;
                 });
-                console.log(this.menuList);
             });
             this.$ajax.get('permission/findAll').then((res) => {
-                this.permissions = res.data.data;
+                this.permissions = res.data;
             });
         },
         findPage() {
@@ -191,9 +188,13 @@ export default {
             // 发送axios进行异步通讯 获取分页数据
             this.$ajax.post('/role/findPage', this.queryInfo).then((res) => {
                 this.loading = false;
-                this.tableList = res.data.rows;
-                this.total = res.data.total;
+                this.tableList = res.rows;
+                this.total = res.total;
             });
+        },
+        querySearch(value) {
+            this.queryInfo.queryString = value;
+            this.findPage();
         },
         /** 打开新增对话框 */
         insert() {
@@ -246,7 +247,7 @@ export default {
             }).then(() => {
                 //调后端删除角色接口
                 this.$ajax.delete(`/role/delete/${id}`).then((res) => {
-                    this.$message.success(res.data.message);
+                    this.$message.success(res.message);
                     this.queryInfo.pageNumber = 1;
                     this.findPage();
                 });
@@ -282,13 +283,13 @@ export default {
                 //校验通过 判断是否是新增
                 if (this.form.id === undefined || this.form.id === null) {
                     this.$ajax.post('/role/insert', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.open = false;
                         this.findPage();
                     });
                 } else {
                     this.$ajax.put('/role/update', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.open = false;
                         this.findPage();
                     });
@@ -299,14 +300,12 @@ export default {
         updateStatus(row) {
             this.$ajax.put('/role/update', row).then((res) => {
                 this.$message.success('状态更新成功！');
-            }).catch(() => {
-
             });
         },
         /** 菜单树形控件 节点值被选中 */
         treeChange() {
             this.checkMenus = [];
-            /** 
+            /**
              * getCheckedNodes：获取tree控件选中的值的数据
              * 第一个参数：是否获取父节点的数据
              * 第二个参数：当check-strictly为False的情况下是否包涵父级节点

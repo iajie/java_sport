@@ -4,9 +4,7 @@
             <el-row :gutter="25">
                 <el-col :span="10">
                     <!-- 搜索添加 -->
-                    <el-input placeholder="请输入搜索内容" v-model="queryInfo.queryString" clearable @clear="findPage">
-                        <el-button slot="append" icon="el-icon-search" @click="findPage"/>
-                    </el-input>
+                    <search :value="queryInfo.queryString" @search="querySearch"/>
                 </el-col>
                 <el-col :span="2">
                     <el-button type="primary" @click="addShow" v-hasPermi="['ADD_FOOD']">添加食物</el-button>
@@ -266,7 +264,7 @@
             </el-dialog>
             <!-- 图片预览对话框 -->
             <el-dialog :visible.sync="picDialog">
-                <img width="100%" :src="dialogImageUrl"/>
+                <img width="100%" :src="dialogImageUrl" alt=""/>
             </el-dialog>
         </el-card>
     </div>
@@ -348,18 +346,19 @@ export default {
     created() {
         /** 初始化查询菜品分类 */
         this.$ajax.get('/food/typeAll').then((res) => {
-            if (!res.data.flag) return this.$message.error(res.data.message);
-            this.foodType = res.data.data;
+            this.foodType = res.data;
         });
     },
     methods: {
         findPage() {
             this.$ajax.post('/food/findPage', this.queryInfo).then((res) => {
-                console.log(res);
-                if (!res.data.flag) return this.$message.error(res.data.message);
-                this.tableList = res.data.data.rows;
-                this.total = res.data.data.total;
+                this.tableList = res.rows;
+                this.total = res.total;
             });
+        },
+        querySearch(value) {
+            this.queryInfo.queryString = value;
+            this.findPage();
         },
         handleSizeChange(newPageSize) {
             this.queryInfo.pageSize = newPageSize;
@@ -400,8 +399,7 @@ export default {
             }).then(() => {
                 //delete请求遵循restful风格
                 this.$ajax.delete(`/food/delete/${id}`).then((res) => {
-                    if (!res.data.flag) return this.$message.error(res.data.message);
-                    this.$message.success(res.data.message);
+                    this.$message.success(res.message);
                     this.findPage();
                 });
             }).catch(() => {
@@ -411,7 +409,6 @@ export default {
         },
         //移除上传的图片
         handleRemove(file, fileList) {
-            console.log(fileList);
             console.log('before --> ' + this.fileNames);
             this.fileNames.forEach((item, index) => {
                 if (file.response) {
@@ -468,7 +465,7 @@ export default {
                 if (this.dataForm.id === null || this.dataForm.id === undefined) {
                     //添加
                     this.$ajax.post('/food/insert', this.dataForm).then((res) => {
-                        if (!res.data.flag) {
+                        if (!res.flag) {
                             setTimeout(() => {
                                 this.loading = false;
                             }, 6000);
@@ -476,7 +473,7 @@ export default {
                         }
                         this.open = false;
                         this.loading = false;
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.findPage();
                     }).catch(() => {
                         setTimeout(() => {
@@ -486,11 +483,11 @@ export default {
                 } else {
                     //修改
                     this.$ajax.post('/food/update', this.dataForm).then((res) => {
-                        if (!res.data.flag) {
+                        if (!res.flag) {
                             setTimeout(() => {
                                 this.loading = false;
                             }, 6000);
-                            return this.$message.error(res.data.message);
+                            return this.$message.error(res.message);
                         }
                         this.open = false;
                         this.loading = false;

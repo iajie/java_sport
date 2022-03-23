@@ -1,35 +1,33 @@
 <template>
     <div>
         <el-card class="main-card">
-            <!-- 
-                v-if 判断true/false 没有直接删除docment 造成性能问题 对标签元素进行删除和展示
+            <!--
+                v-if 判断true/false 直接删除docment 造成性能问题 对标签元素进行删除和展示
                 v-show 判断true/false 不管是否存在 元素都存在 只是加了dispaly属性
                 应用场景： 经常对元素进行展示的，用v-show 反之v-if
              -->
             <div v-show="!open">
                 <el-row>
                     <el-col :span="8">
-                        <el-input placeholder="请输入内容" clearable v-model="queryInfo.queryString" @clear="findPage">
-                            <el-button slot="append" icon="el-icon-search" @click="findPage"/>
-                        </el-input>
+                        <search :value="queryInfo.queryString" @search="querySearch"/>
                     </el-col>
                     <el-col :span="2">
                         <el-button style="margin-left: 10px;" @click="insert" v-hasPermi="['PRE_USER_INSERT']" type="primary">添加信息</el-button>
                     </el-col>
                 </el-row>
-                <el-table 
-                    :data="tableList" 
-                    stripe 
-                    v-loading="loading" 
+                <el-table
+                    :data="tableList"
+                    stripe
+                    v-loading="loading"
                     element-loading-spinner="el-icon-loading">
                     <el-table-column type="index" label="序号"/>
                     <el-table-column prop="name" label="用户名"/>
                     <el-table-column prop="sex" label="性别" :formatter="formatSex"/>
                     <el-table-column label="头像">
                         <template slot-scope="scope">
-                            <el-image 
+                            <el-image
                                 style="width: 100px; height: 100px"
-                                :src="scope.row.avatar.startsWith('https') ? scope.row.avatar : $qiniu + scope.row.avatar" 
+                                :src="scope.row.avatar.startsWith('https') ? scope.row.avatar : $qiniu + scope.row.avatar"
                                 :preview-src-list="preview(scope.row.avatar)">
                             </el-image>
                         </template>
@@ -61,7 +59,7 @@
             </div>
 
             <handle v-show="open" :title="title" @cancel="cancel" :form="form"/>
-            
+
         </el-card>
     </div>
 </template>
@@ -107,9 +105,13 @@ export default {
             this.loading = true;
             this.$ajax.post('/user/findPage', this.queryInfo).then((res) => {
                 this.loading = false;
-                this.tableList = res.data.rows;
-                this.total = res.data.total;
+                this.tableList = res.rows;
+                this.total = res.total;
             });
+        },
+        querySearch(value) {
+            this.queryInfo.queryString = value;
+            this.findPage();
         },
         /** 页码改变事件 */
         handlePageNumber(newPageNumber) {
@@ -154,7 +156,7 @@ export default {
             }).then(() => {
                 //调后端删除用户接口
                 this.$ajax.delete(`/user/delete/${id}`).then((res) => {
-                    this.$message.success(res.data.message);
+                    this.$message.success(res.message);
                     this.queryInfo.pageNumber = 1;
                     this.findPage();
                 });

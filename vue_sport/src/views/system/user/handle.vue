@@ -49,7 +49,7 @@
                     <el-col :span="11">
                         <el-form-item label="用户角色" prop="roles">
                             <el-select v-model="roleIds" placeholder="请选择角色信息" style="width: 80%" multiple>
-                                <el-option 
+                                <el-option
                                     v-for="(item, index) in roleList"
                                     :key="index"
                                     :label="item.label"
@@ -81,7 +81,7 @@
                     </el-col>
                     <el-col :span="11">
                         <el-form-item label="用户头像" prop="avatar">
-                            <!-- 
+                            <!--
                                 action: 用户上传地址
                                 show-file-list： 是否展示列表
                             -->
@@ -146,8 +146,8 @@ export default {
                     { message: '手机号码输入不正确', trigger: 'blur', pattren: /^1(3[0-9]|5[0-3,5-9]|7[1-3,5-8]|8[0-9])\d{8}$/ }
                 ],
                 avatar: [
-                    { 
-                        required: true, 
+                    {
+                        required: true,
                         validator: (rule, value, callback) => {
                             console.log(this.form.avatar);
                             if (this.form.avatar === null || this.form.avatar === '' || this.form.avatar === undefined) {
@@ -155,8 +155,8 @@ export default {
                             } else {
                                 callback();
                             }
-                        }, 
-                        trigger: 'change' 
+                        },
+                        trigger: 'change'
                     },
                 ],
             },
@@ -171,7 +171,7 @@ export default {
     },
     created() {
         this.$ajax.get('/role/findAll').then((res) => {
-            this.roleList = res.data.data;
+            this.roleList = res.data;
         });
     },
     methods: {
@@ -211,12 +211,12 @@ export default {
                 // 判断是添加还是修改
                 if (!this.form.id) {
                     this.$ajax.post('/user/insert', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         return this.$emit('cancel');
                     });
                 } else {
                     this.$ajax.put('/user/update', this.form).then((res) => {
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         return this.$emit('cancel');
                     });
                 }

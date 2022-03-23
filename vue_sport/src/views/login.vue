@@ -29,7 +29,7 @@
                             <el-button type="primary" @click="submit" :loading="load" style="width: 100%">{{ loginText }}</el-button>
                             <el-button type="text" @click="forget">忘记密码？</el-button>
                             <el-button type="text" @click="clickPhone">手机验证码登录</el-button>
-                        </el-form-item> 
+                        </el-form-item>
                     </div>
                     <div v-else>
                         <el-form-item label="邮箱" prop="email">
@@ -103,7 +103,7 @@
                     this.loginText = '登录中...';
                     //如果数据检验成功，则向后端发送请求，进行登录
                     this.$ajax.post('/user/login', this.form).then((res) => {
-                        const tokenBody = res.data.data;
+                        const tokenBody = res.data;
                         let tokenHead = tokenBody.tokenHead;
                         let token = tokenBody.token;
                         this.$store.commit('setToken', tokenHead + token);
@@ -117,15 +117,15 @@
             /** 忘记密码 */
             forget() {
                 this.forgetPwd = true;
-            }, 
+            },
             /** 找回密码，发送邮件 */
             findPassword() {
                 this.$refs.form.validate((valid) => {
                     if (!valid) return this.$message.error('数据校验失败，请检查后提交！');
                     //如果数据检验成功，则向后端发送请求，进行登录
                     this.$ajax.post('/tool/forget/password', { receivers: [this.form.email] }).then((res) => {
-                        if (res.data.flag) {
-                            this.$message.success(res.data.message);
+                        if (res.flag) {
+                            this.$message.success(res.message);
                             this.forgetPwd = false;
                         }
                     });
@@ -150,7 +150,7 @@
                 if (!pattren.test(this.form.phoneNumber)) return this.$message.error('请输入正确的手机号码！');
                 // 发送验证码
                 this.$ajax.post(`tool/sms?phoneNumber=${this.form.phoneNumber}`).then((res) => {
-                    if (res.data.flag) {
+                    if (res.flag) {
                         /*
                         * setInterval: 每隔多少秒执行一次
                         * setTimeout: 在多少秒后执行一次
