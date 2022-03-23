@@ -4,10 +4,7 @@ import com.ajie.entity.SysUser;
 import com.ajie.entity.WxRun;
 import com.ajie.service.SportService;
 import com.ajie.service.SysUserService;
-import com.ajie.utils.DateUtils;
-import com.ajie.utils.DecryptDataUtils;
-import com.ajie.utils.Result;
-import com.ajie.utils.StringUtils;
+import com.ajie.utils.*;
 import com.ajie.vo.Encrypted;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -53,12 +50,10 @@ public class MiniController {
 
     @ApiOperation(value = "微信小程序登录")
     @GetMapping("/login")
-    public Result login(String code) throws IOException {
+    public Result login(String code) {
         if (StringUtils.isEmpty(code)) {
             return Result.fail("登录失败, 请联系管理员！");
         }
-        // 创建一个client请求
-        CloseableHttpClient client = HttpClientBuilder.create().build();
         // 构建get请求
         String url = "https://api.weixin.qq.com/sns/jscode2session?" + "appid=" +
                 appid +
@@ -67,12 +62,8 @@ public class MiniController {
                 "&js_code=" +
                 code +
                 "&grant_type=authorization_code";
-        HttpGet get = new HttpGet(url);
+        String result = HttpUtils.getResponse(url);
         // 发送请求
-        CloseableHttpResponse response = client.execute(get);
-        log.info("请求响应码: {}", response.getStatusLine().getStatusCode());
-        String result = EntityUtils.toString(response.getEntity());
-        log.info("请求响应结果: --> {}", result);
         JSONObject jsonObject = JSON.parseObject(result);
         String openid = jsonObject.getString("openid");
         String sessionKey = jsonObject.getString("session_key");
