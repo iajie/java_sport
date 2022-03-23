@@ -12,7 +12,7 @@
  File Encoding         : 65001
 
  Author: 阿杰
- Date: 03/03/2022 23:42:24
+ Date: 24/03/2022 02:39:49
 */
 
 SET NAMES utf8mb4;
@@ -226,6 +226,69 @@ INSERT INTO `food_type` VALUES (11, '零食点心冷饮', 'icon-test');
 INSERT INTO `food_type` VALUES (12, '其他', 'qita');
 
 -- ----------------------------
+-- Table structure for goods
+-- ----------------------------
+DROP TABLE IF EXISTS `goods`;
+CREATE TABLE `goods`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `price` float NOT NULL,
+  `number` int(11) NULL DEFAULT 0,
+  `create_time` datetime(0) NOT NULL,
+  `create_user_id` bigint(20) NOT NULL,
+  `image_url` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '图片地址',
+  `model_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '适配机型',
+  `control_mode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '控制方式',
+  `main_function` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '主要功能',
+  `wifi_function` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '无线功能',
+  `battery` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '电池规格',
+  `characteristic` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '特色功能',
+  `size` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '外观尺寸',
+  `other` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '其他功能',
+  `remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '备注',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of goods
+-- ----------------------------
+INSERT INTO `goods` VALUES (1, '华为运动手环', 19, 30, '2021-04-20 17:24:22', 1, 'https://res.vmallres.com/pimages//product/6941487233250/428_428_990ACE58BA42353E5B645AD62224349084D409531FD90497mp.png', '安卓Android,苹果iOS,Android 4.4及以上 iOS 8.0及以上', '触控 ', '来电信息提醒,运动监测,心率监测,数据记录,记步,睡眠监测,时间闹钟', '蓝牙,蓝牙4.2', '待机:45天,工作时长:21天,充电:约1.5小时(25℃环境下),2PIN充电接口', '防水,电话短信功能', '44×19.7×10.3mm', '传感器:3轴加速度传感器,分离式PPG心率计,红外光佩戴检测传感器按钮:一个电容触摸按键', '2021-04-20 17:24:22将华为运动手环商品加入库存');
+INSERT INTO `goods` VALUES (2, '电动跑步机', 1999, 2, '2021-04-21 11:42:04', 1, 'http://zhi.hudskm.cn/img/IMG_808702.jpg', '无', '按钮控制', '健身跑步', '无', '充电式', '配有嵌入式糖当量、脂肪当量计算模块，能够通过外置液晶屏随时显示燃糖当量、燃脂当量;', '占地面积:长2100*宽870*高1570mm；\n跑带规格:525*3200mm；', '时间、距离、心跳、卡路里、电动扬升、体脂', 'null； 管理员：阿杰于2021-04-21 11:46:08 --> 更新了商品:电动跑步机');
+INSERT INTO `goods` VALUES (3, '深蹲架', 299, 3, '2021-04-21 11:42:19', 1, 'https://img.alicdn.com/imgextra/i2/31409736/O1CN01UxhDNs2Ln8pFzmZKe_!!0-saturn_solar.jpg_468x468q75.jpg_.webp', '无', '无', '深蹲健跨，让你在女性面前狠抬头！', '无', '无', '采用超强耐用钢丝绳，直径达5.5mm', '采用50*100mm优质平椭圆管钢材和50*80mm的方管结合而成\n主体管材厚度达3mm', '无', 'null； 管理员：阿杰于2021-04-21 11:46:17 --> 更新了商品:深蹲架');
+INSERT INTO `goods` VALUES (4, 'FDR-X100V（准4K运动摄像机）', 500, 5, '2021-04-21 11:42:21', 1, 'https://img.alicdn.com/imgextra/i1/1647580052/O1CN01nhIHzB1CFrKhSLL8v_!!0-saturn_solar.jpg_468x468q75.jpg_.webp', '无', '按钮+触控', '将自己运动时的英姿保留下来，留作永久纪念', '蓝牙', '待机:100天,工作时长:45天,充电:约1.5小时(25℃环境下),2PIN充电接口', '像素高达3840x2160、降噪、定点摄像、防抖、防水防潮等', '48×15×10.3mm', '无', 'null； 管理员：阿杰于2021-04-21 11:46:20 --> 更新了商品:FDR-X100V（准4K运动摄像机）');
+INSERT INTO `goods` VALUES (5, '体感操控的运动耳机', 150, 10, '2021-04-21 11:42:23', 1, 'https://pic3.zhimg.com/80/v2-046c546ab38b73ff07c77774aa296a3a_720w.jpg?source=1940ef5c', '安卓Android,苹果iOS,Windows', '滚轮', '在运动的同时欣赏一下音乐是很多人的最爱，但有时例如跑步正在兴头上，一个电话打来，就不得不停下来手忙脚乱的去摸索耳机的线控开关，颇觉得扫兴', 'USB线+蓝牙', '待机:20天,工作时长:2天,充电:约1小时(25℃环境下),2PIN充电接口', '内置的传感器可让聆听者通过手势播放、暂停音乐、甚至接听电话', '看图', 'JBL介绍称，这两款产品分别名为 Reflect Response BT 和 Synchros S210BT，前者为入耳式，后者为头戴式，均内置有体感检测和蓝牙连接模块', 'null； 管理员：阿杰于2021-04-21 11:46:23 --> 更新了商品:体感操控的运动耳机');
+INSERT INTO `goods` VALUES (6, '智能滑雪板', 400, 5, '2021-04-21 11:42:25', 1, 'http://n1.itc.cn/img8/wb/recom/2016/08/09/147068437772769858.JPEG', '安卓Android,苹果iOS', '按钮', '如今已入深冬，正是叫上小伙伴一起到山上滑雪的季节，那么您试过智能滑雪板吗?没有的话，可以尝试一下日本Cerevo公司的XON Snow-1智能滑雪板，它能记录用户使用中的运动情况，及滑行时的重量分布状况。', '蓝牙', '充电：约5.5小时', '　该产品不仅功能强大，而且“逼格感”十足。其在捆绑带上配备LED灯，随着重量分布发生变化时亮起，虽然只是装饰作用，但运动者不就是要的这个范儿吗?', '产品尺寸（折叠前）约1080×430×1140mm, 产品尺寸（折叠后）约1080×430×490mm', '　该产品不仅功能强大，而且“逼格感”十足。其在捆绑带上配备LED灯，随着重量分布发生变化时亮起，虽然只是装饰作用，但运动者不就是要的这个范儿吗?', 'null； 管理员：阿杰于2021-04-21 11:46:26 --> 更新了商品:智能滑雪板');
+
+-- ----------------------------
+-- Table structure for motion
+-- ----------------------------
+DROP TABLE IF EXISTS `motion`;
+CREATE TABLE `motion`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '运动名称',
+  `applicable_age` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '使用年龄',
+  `beneficial_position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收益部位(身体)',
+  `introduction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '简介(对该运动的描述)',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '运动表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of motion
+-- ----------------------------
+INSERT INTO `motion` VALUES (1, '跆拳道', '5-60', NULL, NULL);
+INSERT INTO `motion` VALUES (2, '田径', '6-80岁', '大腿，肺活量', NULL);
+INSERT INTO `motion` VALUES (3, '赛艇', '6-80岁', '大腿、肺活量', NULL);
+INSERT INTO `motion` VALUES (4, '羽毛球', '5-80岁', NULL, NULL);
+INSERT INTO `motion` VALUES (6, '篮球', '5-60岁', NULL, NULL);
+INSERT INTO `motion` VALUES (7, '足球', '4-40岁', NULL, NULL);
+INSERT INTO `motion` VALUES (8, '拳击', '3-75岁', NULL, NULL);
+INSERT INTO `motion` VALUES (9, '柔道', '3-50岁', NULL, '123');
+INSERT INTO `motion` VALUES (10, '乒乓球', '4-80岁', NULL, '### 乒乓球的起源与发展历史是什么\r\n\r\n    乒乓球起源于19世纪末的英国，是由网球运动衍生而来的。其发展历史是19世纪末起源于英国，1900年至1902年传入日本，于1904年再传入到中国上海，之后经过几个重大发展阶段，才发展成今日家喻户晓的运动项目，也是奥运会比赛项目之一。\r\n\r\n    乒乓球名字的由来是由于原先的球拍柄较长，两面贴着羊皮纸，并且中间是空洞的，用这种球拍打球时发出的声音是“乒”，落台时是“乓”，因此诞生乒乓这个名字，后来英国一家体育用品公司，将“乒乓”一词作为广告的别称，从此乒乓球才开始闻名世界。\r\n\r\n提到乒乓球运动，不难想起乒乓之父——蒙塔古，蒙塔古出身于英国贵族，17岁即担任英格兰乒协主席，在1926年的2月12日，22岁的蒙塔古被推选担任国际乒联主席，直至1967年才退休，在位的40年间，将乒乓球从一个游戏，发展成世界性的体育比赛项目，蒙塔古所作出的巨大贡献，在退休时被一致推举为国际乒联终身名誉主席。');
+INSERT INTO `motion` VALUES (11, '放风筝', '5-60', '舒展筋骨，吐故纳新，促进人体新陈代谢，改善血液循环', '放风筝在中国有悠久的历史。“纸花如雪满天飞，娇女秋千打四围。五色罗裙风摆动，好将蝴蝶斗春归。”郑板桥的诗歌，形象地描述了江苏扬州春季放风筝的景象。\n\n放风筝要讲究天时地利。4月初，中国大部分地区气温适宜，有比较稳定的上升气流，风筝很容易升空。据专家研究，一般风力在2—5 级时，比较适宜风筝放飞。当然如果遇到雾霾或是沙尘天气，就最好不要逞能了。春天的风向、风速多变，要根据风速和风向变化决定是否放线、调整拉线的方向。此外，在地点的选择上，最好在公园等视野比较开阔、没有障碍物的空旷地带。\n\n放风筝时，手牵引线，来回奔跑，有张有弛，手臂、腰部及腿部的肌肉可以得到锻炼。古人认为，放风筝的最高境界是“放中相牵，一线相连”。放飞后，要精神抖擞，把线看作缰绳，如同驯马一般，然后望天入静，随风筝飘移而前后奔走。\n\n![放风筝.jpg](http://qrn83ytxn.hn-bkt.clouddn.com/ae9ab6f6-d306-49f9-a398-916293ee016ejpg)');
+INSERT INTO `motion` VALUES (12, '写代码', '8-50', '大脑，手指', '### 1、逻辑思维能力\n因为程序就是对现实事物的抽象，而且，按照写好的逻辑运行。所以，编程能够锻炼我们的抽象思维能力和逻辑思维能力。\n![9c16fdfaaf51f3deff77bb309beef01f3b297998.jpg](http://qrn83ytxn.hn-bkt.clouddn.com/765daa60-1eda-4d66-9aab-1524134202d0jpg)\n### 2、提高效率\n通过编程，我们能够很容易的处理大量重复性、低效率的工作，从而节省时间。而工作中很多地方都用到了编程来提高生产力，比如 Excel 中的宏，很多 Adobe 的产品都能使用 JavaScrpt 来自动化工作。\n![574e9258d109b3defd85e73cc3bf6c81800a4caf.jpg](http://qrn83ytxn.hn-bkt.clouddn.com/77df30df-392d-4ad3-9e76-d4fe0ba17c31jpg)\n### 3、 改变粗心的毛病\n在编程的世界里，你多输入一个标点符号，都会造成程序大乱，无法运行，更别说在逻辑分析上出现问题。\n### 4、避免被人工智能时代所淘汰，知道未来需要什么样的能力\n前面已经说过了，编程是通向未来的语言，通过学会编程和智能机器沟通。不得不承认，现代社会已经步入信息化科技时代，传统行业正在被科技革新。\n![b3119313b07eca8044c03bb39e2397dda0448398.jpg](http://qrn83ytxn.hn-bkt.clouddn.com/a68fefe2-f2e9-47c1-a276-de4e6cd35a70jpg)\n```java\n	//来一段大家最喜欢的代码\n        async findPage() {\n            this.$ajax.post(\'/motion/findPage\', this.queryInfo).then((res) => {\n                if (!res.data.flag) return this.$message.error(res.data.message);\n                //给列表赋值\n                this.tableData = res.data.data.rows;\n                this.total = res.data.data.total;\n                //console.log(this.tableData);\n                for (let i=0; i<this.tableData.length; i++) {\n                    this.tableData[i].introduction = marked(this.tableData[i].introduction);\n                }\n            }).catch((err) => {\n                console.log(err.message);\n                if (err.request.status == 400) return this.$message.warning(\'请求错误！\');\n                if (err.request.status == 500) return this.$message.warning(\'数据请求失败，请稍后再试！\');\n            });\n        }\n\n```\n');
+INSERT INTO `motion` VALUES (13, '跳高', '5-40岁', '全身肌肉', '- 跳高作为一种游戏活动可以追溯到远古时代。跳高运动在各个国家的不同时期都曾广为流传。在古代日耳曼人中曾盛行过跳越横排马匹的比赛，有人最多跳越过横排着的6匹马非洲的图西人还曾有过利用厚木头的跳板或石头踏跳进行的跳高比赛。\n- 跳高起源于古代人类在生活和劳动中越过垂直障碍的活动，现代跳高则始于欧洲。\n- 18世纪末，苏格兰已有跳高比赛。\n- 1827年，在英国圣罗兰·博德尔俱乐部举行的首届职业田径比赛中，威尔逊屈膝团身跳越1.575米，这是第一个有记载的世界跳高成绩。 [5] \n### 早年跳高比赛\n1864年，英国运动员罗伯特·柯奇采用了从侧面助跑的助跑方式，并且两条腿先后交替过杆，采用这种方式他成功地越过1.70米的高度，并且创造了新的跳高纪录，他采用的跳高姿势叫作“跨越式”。跨越式跳高技术的出现，标志着古代跳高运动的结束，在跳高史上揭开了新的一页，也使跳高成绩有了明显的进展，被公认的第一个跳高纪录就是以跨越式创造的。在跨越式跳高的发展进程中，不断出现了许多新的方式，包括过转体跨越式和挺身跨越式跳高，这种方式的跳高又称为半剪式跳高。\n![](https://bkimg.cdn.bcebos.com/pic/5ab5c9ea15ce36d37b141dab3af33a87e950b11d?x-bce-process=image/resize,m_lfit,w_440,limit_1/format,f_auto)\n1895年，美国运动员斯维尼在挺身跨越式跳高的基础上改变为急速转体，面对横杄落地，这种跳高姿势跳过了1.97米，创下了新的世界纪录并保持了17年。斯维尼的这种新的跳高姿势最初被称为“波浪式”。由于当时各国对体育运动项目的交流甚少，人们并不知道这种跳高姿势叫什么姿势，因而在第二届奥运会上人们目睹了这种新的跳高姿势，后来人们把它改称为“剪式”跳高。\n1896年，在第一届现代奥林匹克运动会上，克拉克代表美国采用跨越式跳高以1.81的成绩获得冠军。	');
+
+-- ----------------------------
 -- Table structure for roles_menus
 -- ----------------------------
 DROP TABLE IF EXISTS `roles_menus`;
@@ -357,7 +420,7 @@ CREATE TABLE `sys_menu`  (
   `parent_id` bigint(20) NULL DEFAULT NULL COMMENT '父级菜单',
   `status` tinyint(1) NULL DEFAULT 0 COMMENT '显示状态(0不显示、1显示)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -372,6 +435,8 @@ INSERT INTO `sys_menu` VALUES (7, '/sport/intorduction', 'fa fa-codepen', '运�
 INSERT INTO `sys_menu` VALUES (8, 'food/type/index', 'fa fa-arrow-left', '食物分类管理', 'food/index', 8, 1);
 INSERT INTO `sys_menu` VALUES (11, '/', 'fa fa-cutlery', '食物管理', 'home', NULL, 1);
 INSERT INTO `sys_menu` VALUES (12, '/food/type', 'fa fa-codepen', '食物的分类管理', 'food/index', 11, 1);
+INSERT INTO `sys_menu` VALUES (13, '/sport/motion', 'fa fa-odnoklassniki', '运动项目', 'sport/Motion', 6, 1);
+INSERT INTO `sys_menu` VALUES (14, '/sport/goods', 'fa fa-modx', '运动商品', 'sport/Goods', 6, 1);
 
 -- ----------------------------
 -- Table structure for sys_permission
@@ -479,5 +544,41 @@ CREATE TABLE `wx_run`  (
   `time` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '时间',
   `step` int(7) NULL DEFAULT NULL COMMENT '运动步数'
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信运动步数记录表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wx_run
+-- ----------------------------
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-02-21', 1155);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-02-22', 10218);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-02-23', 2516);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-02-24', 538);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-02-25', 2255);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-02-26', 3833);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-02-27', 13059);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-02-28', 729);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-01', 1929);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-02', 827);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-03', 751);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-04', 352);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-05', 771);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-06', 1584);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-07', 1167);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-08', 1081);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-09', 1458);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-10', 431);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-11', 1300);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-12', 5326);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-13', 4471);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-14', 1075);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-15', 364);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-16', 1537);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-17', 1802);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-18', 1042);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-19', 1018);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-20', 680);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-21', 1703);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-22', 485);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-23', 3566);
+INSERT INTO `wx_run` VALUES ('ouZUv5NzKIFuaNNFYM0gRVozKEDU', '2022-03-24', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
