@@ -73,7 +73,7 @@ public interface SysUserMapper {
      * 微信小程序进入添加信息
      * @param openid 微信小程序唯一标识
      */
-    @Insert("insert into sys_user(open_id) values (#{openid})")
+    @Insert("insert into sys_user(open_id, status) values (#{openid}, 0)")
     void insertOpenid(@Param("openid") String openid);
 
     /**
