@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
         //向后端发送请求，获取用户的基本信息
         ajax.get('/user/getInfo').then((res) => {
             //得到用户信息
-            const user = res.data.data;
+            const user = res.data;
             store.commit('setName', user.name);
             store.commit('setAvatar', user.avatar);
             if (user.roles.length > 0) {
