@@ -37,12 +37,6 @@ App({
                                         encryptedData,
                                         iv
                                     } = res;
-                                    let form = {
-                                        encryptedData: encryptedData,
-                                            iv: iv,
-                                            sessionKey: data.sessionKey, // 微信小程序登陆时获取
-                                            openid: data.openid
-                                    };
                                     wx.request({
                                         url: 'http://localhost:8000/mini/wxrun',
                                         method: 'POST',
@@ -91,13 +85,13 @@ App({
                 },
                 success: (res) => {
                     if (res.data.flag) {
-                        resolve(res);
+                        resolve(res.data);
                     } else {
                         wx.showToast({
                             title: res.data.message,
                             icon: 'error'
                           });
-                        reject(res);
+                        reject(res.data);
                     }
                 },
                 fail: (err) => {

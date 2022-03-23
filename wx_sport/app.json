@@ -7,12 +7,15 @@
 		"pages/index/details/details",
 		"pages/food/foods/foods",
 		"pages/food/foods/details/details",
-		"pages/food/foods/foodDetails/foodsDetails"
+		"pages/food/foods/foodDetails/foodsDetails",
+		"pages/login/login"
 	],
 	"usingComponents": {
 		"van-icon": "@vant/weapp/icon/index",
 		"van-button": "@vant/weapp/button/index",
-		"van-empty": "@vant/weapp/empty/index"
+		"van-empty": "@vant/weapp/empty/index",
+		"van-tab": "@vant/weapp/tab/index",
+		"van-tabs": "@vant/weapp/tabs/index"
 	},
 	"window": {
 		"backgroundTextStyle": "light",
@@ -28,7 +31,7 @@
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				"text": "运动资讯"
+				"text": "首页"
 			},
 			{
 				"pagePath": "pages/food/food",
