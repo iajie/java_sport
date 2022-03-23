@@ -205,6 +205,8 @@ public class SysUserServiceImpl implements SysUserService {
         if (StringUtils.isEmpty(user.getOpenId())) {
             return Result.fail("请传递小程序唯一标识");
         }
+        // 清除用户缓存，从新获取
+        redisUtils.delKey("username_" + user.getOpenId());
         userMapper.updateByopenId(user);
         return Result.success("用户信息更新成功");
     }
