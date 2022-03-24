@@ -18,7 +18,7 @@ import '@/utils/highlight';
 // 引入搜索组件
 import Search from '@/compoent/Search';
 
-Vue.prototype.$qiniu = 'http://vue.jierxm.com/';
+Vue.prototype.$qiniu = 'http://xxx.xxx.com/';
 
 Vue.component('search', Search);
 Vue.config.productionTip = false;

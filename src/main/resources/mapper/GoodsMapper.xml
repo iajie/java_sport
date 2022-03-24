@@ -87,7 +87,7 @@
         #{controlMode}, #{mainFunction}, #{wifiFunction}, #{battery}, #{characteristic}, #{size}, #{other}, #{remark})
     </insert>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="long">
         delete from sport where id = #{id}
     </delete>
 </mapper>

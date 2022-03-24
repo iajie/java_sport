@@ -84,12 +84,11 @@ public class QiniuUtils {
      * @return
      */
     public String upload(byte[] bytes, String fileName) {
-        String name = this.genName(fileName);
         try {
-            Response response = uploadManager.put(bytes, name, this.uploadToken());
+            Response response = uploadManager.put(bytes, this.genName(fileName), this.uploadToken());
             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
             log.info("文件上传成功==> key:{} <==> hash: {}", putRet.key, putRet.hash);
-            return name;
+            return this.genName(fileName);
         } catch (QiniuException e) {
             Response r = e.response;
             try {
@@ -108,13 +107,12 @@ public class QiniuUtils {
      * @return
      */
     public String upload(InputStream stream, String fileName) {
-        String name = this.genName(fileName);
         try {
-            Response response = uploadManager.put(stream, name, this.uploadToken(), null, null);
+            Response response = uploadManager.put(stream, this.genName(fileName), this.uploadToken(), null, null);
             //解析上传成功的结果
             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
             log.info("文件上传成功==> key:{} <==> hash: {}", putRet.key, putRet.hash);
-            return name;
+            return this.genName(fileName);
         } catch (QiniuException e) {
             Response r = e.response;
             try {
@@ -152,7 +150,7 @@ public class QiniuUtils {
      */
     public String genName(String fileName) {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-        return format.format(new Date()) + fileName;
+        return format.format(new Date()) + fileName.substring(fileName.lastIndexOf("."));
     }
 
 }

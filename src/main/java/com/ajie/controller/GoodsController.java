@@ -6,6 +6,7 @@ import com.ajie.utils.EasyExcelUtils;
 import com.ajie.utils.QueryInfo;
 import com.ajie.utils.Result;
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.exception.ExcelDataConvertException;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -41,9 +42,17 @@ public class GoodsController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "goods", value = "从浏览器上传的Excel文档", required = true),
     })
-    public Result batchImport(@RequestParam("goods") MultipartFile file) throws IOException {
-        List<Goods> list = EasyExcelUtils.readExcel(file.getInputStream(), Goods.class);
-        return goodsService.batchImport(list);
+    public Result batchImport(@RequestParam("goods") MultipartFile file) {
+        try {
+            List<Goods> list = EasyExcelUtils.readExcel(file.getInputStream(), Goods.class);
+            return goodsService.batchImport(list);
+        } catch (Exception e) {
+            if (e.getCause() instanceof ExcelDataConvertException) {
+                return Result.fail("表格类型错误，商品数量为整数，价格为两个小数点的数字");
+            } else{
+                return Result.fail("商品导入异常，请联系管理员");
+            }
+        }
     }
 
     @ApiOperation(value = "Excel导出所有的商品信息", httpMethod = "GET")
@@ -69,6 +78,11 @@ public class GoodsController {
     @DeleteMapping("/delete/{id}")
     public Result delete(@PathVariable Long id) {
         return goodsService.delete(id);
+    }
+
+    @PostMapping("/update")
+    public Result update(@RequestBody Goods goods) {
+        return goodsService.edit(goods);
     }
 
 }

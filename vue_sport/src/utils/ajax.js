@@ -38,7 +38,9 @@ ajax.interceptors.response.use((res) => {
     return res.data;
 }, (err) => {
     // 三个等号： 绝对等于 0=0 0!='0'  双等号： 0=0 0='0'
-    if (err.response.status === 400) {
+    if (err.response.statusText === 'Internal Server Error') {
+        Message.warning('后端未启动');
+    } else if (err.response.status === 400) {
         Message.error(err.response.data.message);
     } else if (err.response.status === 401) {
         Message.error('您未登录, 请登录后操作！');
@@ -52,7 +54,7 @@ ajax.interceptors.response.use((res) => {
     } else if (err.response.status === 405) {
         Message.warning('请求方法错误-->后端需要"' + err.response.headers.allow + '"请求');
     } else if (err.response.status === 500) {
-        Message.error('后端异常-->' + err.response.data.message);
+        Message.error('后端异常');
     } else {
         Message.error('未知错误！');
     }
