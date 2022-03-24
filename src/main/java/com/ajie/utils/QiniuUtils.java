@@ -88,7 +88,7 @@ public class QiniuUtils {
             Response response = uploadManager.put(bytes, this.genName(fileName), this.uploadToken());
             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
             log.info("文件上传成功==> key:{} <==> hash: {}", putRet.key, putRet.hash);
-            return this.genName(fileName);
+            return putRet.key;
         } catch (QiniuException e) {
             Response r = e.response;
             try {
