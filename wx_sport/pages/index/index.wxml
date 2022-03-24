@@ -42,7 +42,7 @@
 				if (str.indexOf('http') != -1) {
 					return str;
 				} else {
-					return 'http://r95ajakx8.hn-bkt.clouddn.com/' + str;
+					return 'http://xxx.xxx.com/' + str;
 				}
             } else {
                 return 'https://img.yzcdn.cn/vant/cat.jpeg';
