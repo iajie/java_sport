@@ -155,7 +155,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 //调后端删除用户接口
-                this.$ajax.delete(`/user/delete/${id}`).then((res) => {
+                this.$ajax.delete(`/user/delete/${row.id}`).then((res) => {
                     this.$message.success(res.message);
                     this.queryInfo.pageNumber = 1;
                     this.findPage();
