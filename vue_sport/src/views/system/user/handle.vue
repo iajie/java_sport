@@ -92,7 +92,7 @@
                                 :show-file-list="false"
                                 :on-success="handleSuccess"
                                 :before-upload="beforeUpload">
-                                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                                <img v-if="imageUrl" :src="imageUrl" class="avatar" alt="">
                                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                             </el-upload>
                         </el-form-item>
@@ -115,15 +115,20 @@ export default {
     watch: {
         'form': {
             handler(val, old) {
-                this.roleIds = [];
-                console.log('表单值', val);
-                this.form.userName = val.name;
-                this.imageUrl = val.avatar.startsWith('https') ? val.avatar : this.$qiniu + val.avatar;
-                // 回显角色
-                if (val.roles && val.roles.length > 0) {
-                    val.roles.forEach(item => {
-                        this.roleIds.push(item.id);
-                    });
+                if (val) {
+                    this.roleIds = [];
+                    if (val.name) {
+                        this.form.userName = val.name;
+                    }
+                    if (val.avatar) {
+                        this.imageUrl = val.avatar.startsWith('http') ? val.avatar : this.$qiniu + val.avatar;
+                    }
+                    // 回显角色
+                    if (val.roles && val.roles.length > 0) {
+                        val.roles.forEach(item => {
+                            this.roleIds.push(item.id);
+                        });
+                    }
                 }
             }
         }
@@ -161,7 +166,7 @@ export default {
                 ],
             },
             imageUrl: null,
-            action: '/tool/upload',
+            action: `${process.env.VUE_APP_BASE_URL}/tool/upload`,
             headers: {
                 Authorization: sessionStorage.getItem('token')
             },
