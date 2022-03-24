@@ -5,9 +5,9 @@
 
     <!-- 分页查询数据 -->
     <select id="findPage" resultType="com.ajie.entity.Sport">
-        select * from sport
+        select * from sport where del=0
         <if test="queryString != null and queryString.length > 0">
-            where title like concat('%', #{queryString}, '%') or content like concat('%', #{queryString}, '%')
+            and (title like concat('%', #{queryString}, '%') or content like concat('%', #{queryString}, '%'))
         </if>
     </select>
 

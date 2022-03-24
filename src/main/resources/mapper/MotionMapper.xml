@@ -45,7 +45,7 @@
         insert into motion(`name`, applicable_age, beneficial_position, introduction) values (#{name}, #{applicableAge}, #{beneficialPosition}, #{introduction})
     </insert>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete">
         delete from motion where id = #{id}
     </delete>
 </mapper>

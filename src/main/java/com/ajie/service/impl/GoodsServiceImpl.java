@@ -24,9 +24,6 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     private GoodsMapper goodsMapper;
 
-    @Autowired
-    private SysUserService userMapper;
-
     @Override
     public Result findPage(QueryInfo queryInfo) {
         PageHelper.startPage(queryInfo.getPageNumber(), queryInfo.getPageSize());
