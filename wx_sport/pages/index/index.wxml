@@ -16,7 +16,8 @@
 			wx:key="index" 
 			desc="特色功能：{{ item.characteristic }}" 
 			num="{{ item.number }}"
-			thumb="{{ item.imageUrl }}"
+			thumb="{{ image2.formatImage(item.imageUrl) }}"
+			data-image2="{{ item.imageUrl }}"
 			price="{{ item.price }}"
 			title="{{ item.name }}"/>
 			<van-empty wx:if="{{ tableList.length < 1 }}" description="暂无数据" />
@@ -31,3 +32,21 @@
 		</van-tab>
 	</van-tabs>
 </view>
+
+<!-- wxml页面内置js -->
+<wxs module="image2">
+    // 暴露使用的方法
+    module.exports = {
+        formatImage: function (str) {
+            if (str) {
+				if (str.indexOf('http') != -1) {
+					return str;
+				} else {
+					return 'http://r95ajakx8.hn-bkt.clouddn.com/' + str;
+				}
+            } else {
+                return 'https://img.yzcdn.cn/vant/cat.jpeg';
+            }
+        }
+    }
+</wxs>
