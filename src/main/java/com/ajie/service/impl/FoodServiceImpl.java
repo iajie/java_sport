@@ -55,14 +55,14 @@ public class FoodServiceImpl implements FoodService {
     public Result findPage(QueryInfo queryInfo) {
         PageHelper.startPage(queryInfo.getPageNumber(), queryInfo.getPageSize());
         Page<FoodType> page = foodTypeMapper.findPage(queryInfo.getQueryString());
-        return Result.success("菜品分类查询成功", new PageResult(page.getTotal(), page.getResult()));
+        return PageResult.pageRsult(page.getTotal(), page.getResult());
     }
 
     @Override
     public Result findFoodPage(QueryInfo queryInfo) {
         PageHelper.startPage(queryInfo.getPageNumber(), queryInfo.getPageSize());
         Page<Food> page = foodMapper.findPage(queryInfo.getQueryString());
-        return Result.success("菜品查询成功", new PageResult(page.getTotal(), page.getResult()));
+        return PageResult.pageRsult(page.getTotal(), page.getResult());
     }
 
     @Override

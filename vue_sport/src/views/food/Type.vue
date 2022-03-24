@@ -100,10 +100,8 @@ export default {
     methods: {
         findPage() {
             this.$ajax.post('/food/type/findPage', this.queryInfo).then((res) => {
-                console.log(res);
-                if (!res.data.flag) return this.$message.error(res.data.message);
-                this.tableList = res.data.data.rows;
-                this.total = res.data.data.total;
+                this.tableList = res.rows;
+                this.total = res.total;
             });
         },
         querySearch(value) {
@@ -135,8 +133,7 @@ export default {
             }).then(() => {
                 //delete请求遵循restful风格
                 this.$ajax.delete(`/food/type/delete/${row.id}`).then((res) => {
-                    if (!res.data.flag) return this.$message.error(res.data.message);
-                    this.$message.success(res.data.message);
+                    this.$message.success(res.message);
                     this.findPage();
                 });
             }).catch(() => {
@@ -161,29 +158,29 @@ export default {
                 if (this.dataForm.id === null || this.dataForm.id === undefined) {
                     //添加
                     this.$ajax.post('/food/type/insert', this.dataForm).then((res) => {
-                        if (!res.data.flag) {
+                        if (!res.flag) {
                             setTimeout(() => {
                                 this.loading = false;
                             }, 6000);
-                            return this.$message.error(res.data.message);
+                            return this.$message.error(res.message);
                         }
                         this.open = false;
                         this.loading = false;
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.findPage();
                     });
                 } else {
                     //修改
                     this.$ajax.post('/food/type/update', this.dataForm).then((res) => {
-                        if (!res.data.flag) {
+                        if (!res.flag) {
                             setTimeout(() => {
                                 this.loading = false;
                             }, 6000);
-                            return this.$message.error(res.data.message);
+                            return this.$message.error(res.message);
                         }
                         this.open = false;
                         this.loading = false;
-                        this.$message.success(res.data.message);
+                        this.$message.success(res.message);
                         this.findPage();
                     });
                 }
